@@ -143,10 +143,14 @@ namespace TestGame.src.entities
             float xx = 0, yy = 0;
             if (movev.X != 0) xx = movev.X / (Math.Abs(movev.X));
             if (movev.Y != 0) yy = movev.Y / (Math.Abs(movev.Y));
-            if (Position.X < MoveTo.X + 1) xx += 0.2f;
-            if (Position.X > MoveTo.X - 1) xx -= 0.2f;
-            if (Position.Y < MoveTo.Y + 1) yy += 0.2f;
-            if (Position.Y > MoveTo.Y - 1) yy -= 0.2f;
+
+            float antilagX = 0, antilagY = 0;
+            if (Position.X < MoveTo.X + 1) antilagX += 0.2f;
+            if (Position.X > MoveTo.X - 1) antilagX -= 0.2f;
+            if (Position.Y < MoveTo.Y + 1) antilagY += 0.2f;
+            if (Position.Y > MoveTo.Y - 1) antilagY -= 0.2f;
+            Position += new Vector2(antilagX, antilagY);
+
             if (this is Player && (Math.Abs(Position.Y-MoveTo.Y) > 2 || Math.Abs(Position.X - MoveTo.X) > 2))
             {
                 //Position = MoveTo;
@@ -154,7 +158,7 @@ namespace TestGame.src.entities
             }           
             movev = new Vector2(xx, yy);
             move(movev * (speed));
-            Debug.WriteLine(movev.X + " " + movev.Y);
+            //Debug.WriteLine(movev.X + " " + movev.Y);
         }
         public void move(Vector2 offset)
         {
