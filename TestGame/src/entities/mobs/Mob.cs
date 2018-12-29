@@ -32,9 +32,8 @@ namespace TestGame.src.entities
 
         public AnimatedMobSprite animatedSprite;
 
-        public string name = "Nameless";
-        //CHAT BUBBLE
-        
+        public string name = "Manfred";
+        //CHAT BUBBLE      
         private Texture2D chatBubble;
         
         protected SpriteFont font, namefont;
