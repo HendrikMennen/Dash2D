@@ -32,7 +32,7 @@ namespace TestGame.src.graphics.ui
         private int width = Game1.screenWidth;
         private int height = Game1.screenHeight;
         private int invWidth = 10, invHeight=10;
-        private bool open = false;
+        private readonly bool open = false;
         private int scroll = 0;
         private int Scroll
         {
@@ -60,14 +60,14 @@ namespace TestGame.src.graphics.ui
             }     
             private set
             {                
-                if (currentItem != null) currentItem.Activated -= new EventHandler(OnActivate);
+                //if (currentItem != null) currentItem.Activated -= new EventHandler(OnActivate);
                 level.getClientPlayer().currentItem = value;
                 currentItem = value;
-                currentItem.Activated += new EventHandler(OnActivate);
+                //currentItem.Activated += new EventHandler(OnActivate);
             }       
         }
 
-        public void loadContent(ContentManager cm)
+        public void LoadContent(ContentManager cm)
         {
             this.cm = cm;
             s.LoadContent(cm);
@@ -86,30 +86,30 @@ namespace TestGame.src.graphics.ui
 
             invWidth = invBar.Width;
             invHeight = invBar.Height;
-            updateResolution();
+            UpdateResolution();
             #if true
 
-            addItem(StaticItems.particlespawner, 10);
-            addItem(StaticItems.sofa, 2);
+            AddItem(StaticItems.particlespawner, 10);
+            AddItem(StaticItems.sofa, 2);
             //addItem(Item.tv, 1);
             //addItem(StaticItems.speaker, 2);
-            addItem(StaticItems.discolight, 20);
-            addItem(StaticItems.lamp1, 10);
-            addItem(StaticItems.torch, 100);
+            AddItem(StaticItems.discolight, 20);
+            AddItem(StaticItems.lamp1, 10);
+            AddItem(StaticItems.torch, 100);
             //addItem(StaticItems.magicglass, 10);
-            addItem(StaticItems.cabinet1, 5);
-            addItem(StaticItems.plant1, 10);
+            AddItem(StaticItems.cabinet1, 5);
+            AddItem(StaticItems.plant1, 10);
             //addItem(Item.fence, 50);
-            addItem(StaticItems.redjacket, 1);
-            addItem(StaticItems.yellowjacket, 1);
-            addItem(StaticItems.blackjacket, 1);          
-            addItem(StaticItems.whitejacket, 1);
+            AddItem(StaticItems.redjacket, 1);
+            AddItem(StaticItems.yellowjacket, 1);
+            AddItem(StaticItems.blackjacket, 1);          
+            AddItem(StaticItems.whitejacket, 1);
             //addItem(Item.book1, 1);
-            addItem(StaticItems.beer, 2);
+            AddItem(StaticItems.beer, 2);
             //addItem(Item.disc_GhostBusters, 1);
             //addItem(Item.disc_Night_Drive, 1);
 
-            addItem(StaticItems.sheep, 30);
+            AddItem(StaticItems.sheep, 30);
             //addItem(Item.joseph, 10);
 
             //addItem(Item.grass, 10);
@@ -127,17 +127,17 @@ namespace TestGame.src.graphics.ui
 
         public void OnActivate(object sender, EventArgs arg)
         {
-            remItem(currentSlot);
+            RemItem(currentSlot);
             drag = false;
             if (sender is BasicItem) {
                 cmd.command(((BasicItem)sender).command);
             }            
         }
 
-        public void addItem(Item item, int anzahl)
+        public void AddItem(Item item, int anzahl)
         {
-            item.init(level, this);
-            item.loadContent(cm);
+            item.Init(level, this);
+            item.LoadContent(cm);
 
             for (int i = 0; i < inventory.Length; i++)
             {
@@ -158,12 +158,12 @@ namespace TestGame.src.graphics.ui
                 }
             }
         }
-        public void addItem(int id, int anzahl)
+        public void AddItem(int id, int anzahl)
         {
             
         }
 
-        public void remItem(int n)
+        public void RemItem(int n)
         {
             if (itemAnzahl[n] > 0)
             {
@@ -196,19 +196,19 @@ namespace TestGame.src.graphics.ui
 
         public void Update(Input input)
         {
-            updateSlot(input);
+            UpdateSlot(input);
             CurrentItem = inventory[currentSlot+Scroll];
 
             
             if (CurrentItem is GunItem<Projectile>)
             {
-                CurrentItem.update(input);
+                CurrentItem.Update(input);
             }
             else
             {
                 if (!drag)
                 {
-                    if (input.currentMouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed)
+                    if (input.CurrentMouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed)
                     {
                         if (input.MousePos.X > barPos.X && input.MousePos.X < barPos.X + barPos.Width && input.MousePos.Y > barPos.Y && input.MousePos.Y < barPos.Y + barPos.Height)
                         {
@@ -220,12 +220,12 @@ namespace TestGame.src.graphics.ui
                     else
                     {
                        
-                        if (!CurrentItem.placeable) CurrentItem.update(input);
+                        if (!CurrentItem.placeable) CurrentItem.Update(input);
                     }
                 }
                 else
                 {
-                    CurrentItem.update(input);
+                    CurrentItem.Update(input);
                 }
             }
 
@@ -235,7 +235,7 @@ namespace TestGame.src.graphics.ui
                 bool unselect = true;
                 foreach (var furn in level.furniture)
                 {
-                    if (furn.mapid == level.mapID && CollisionDetector.Collison(new Rectangle(furn.clickbox.X + (int)furn.Position.X, furn.clickbox.Y + (int)furn.Position.Y, furn.clickbox.Width, furn.clickbox.Height), input.getMapPos(input.MousePos)))
+                    if (furn.mapid == level.mapID && CollisionDetector.Collison(new Rectangle(furn.clickbox.X + (int)furn.Position.X, furn.clickbox.Y + (int)furn.Position.Y, furn.clickbox.Width, furn.clickbox.Height), input.GetMapPos(input.MousePos)))
                     {
                         if (Game1.online)
                         {
@@ -243,40 +243,40 @@ namespace TestGame.src.graphics.ui
                         }
                         else
                         {
-                            furn.onClick(CurrentItem);
-                            level.getClientPlayer().selectedEntity = furn;
+                            furn.OnClick(CurrentItem);
+                            level.getClientPlayer().SelectedEntity = furn;
                             unselect = false;
                         }                      
                     }
                 }
                 if (unselect)
                 {
-                    level.getClientPlayer().selectedEntity = null;                  
+                    level.getClientPlayer().SelectedEntity = null;                  
                 }
             }
 
-            if (input.currentMouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed)
+            if (input.CurrentMouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed)
             {
                 if (!dragEntity) //SELECT NEW ENTITY
                 {
                     foreach (var furn in level.furniture)
                     {
-                        if (furn.mapid == level.mapID && CollisionDetector.Collison(new Rectangle(furn.clickbox.X+ (int)furn.Position.X, furn.clickbox.Y+ (int)furn.Position.Y, furn.clickbox.Width, furn.clickbox.Height), input.getMapPos(input.MousePos)))
+                        if (furn.mapid == level.mapID && CollisionDetector.Collison(new Rectangle(furn.clickbox.X+ (int)furn.Position.X, furn.clickbox.Y+ (int)furn.Position.Y, furn.clickbox.Width, furn.clickbox.Height), input.GetMapPos(input.MousePos)))
                         {
-                            level.getClientPlayer().selectedEntity = furn;
+                            level.getClientPlayer().SelectedEntity = furn;
                             dragEntity = true;
                         }
                     }
                 }
                 else
                 {
-                    ((Furniture)level.getClientPlayer().selectedEntity).drag = true;
+                    ((Furniture)level.getClientPlayer().SelectedEntity).Drag = true;
                 }
             }
             else
             {
                 dragEntity = false;
-                level.getClientPlayer().selectedEntity = null;
+                level.getClientPlayer().SelectedEntity = null;
             }
                    
         }
@@ -286,24 +286,24 @@ namespace TestGame.src.graphics.ui
             g.Draw(invBar, barPos, Color.White); // Draw Item bar
             for(int i = 0; i < 9; i++)
             {
-                if(inventory[i + Scroll] is ClothItem) g.Draw(items, new Rectangle((barPosX + i * 19 * scale + 2 * scale), (barPosY + 2 * scale), 16 * scale, 16 * scale), inventory[i + Scroll].source, ((ClothItem)inventory[i + Scroll]).clothcolor);
+                if(inventory[i + Scroll] is ClothItem) g.Draw(items, new Rectangle((barPosX + i * 19 * scale + 2 * scale), (barPosY + 2 * scale), 16 * scale, 16 * scale), inventory[i + Scroll].source, ((ClothItem)inventory[i + Scroll]).Clothcolor);
                 else g.Draw(items, new Rectangle((barPosX+i*19*scale+ 2*scale) ,(barPosY+2*scale), 16*scale, 16*scale), inventory[i+Scroll].source, Color.White);
                 if(inventory[i+Scroll]!= StaticItems.transparent) g.DrawString(invnumberfont, itemAnzahl[i+Scroll].ToString(), new Vector2(barPosX+i*19*scale+18*scale-itemnamefont.MeasureString(itemAnzahl[i+Scroll].ToString()).X, barPosY+12*scale), Color.Azure);
             }
             g.Draw(currentSlotTexture, new Rectangle(barPosX + currentSlot * 19 * scale, barPosY, 20 * scale, 20 * scale), Color.White);
-            g.DrawString(itemnamefont, CurrentItem.name, new Vector2((barPosX + (invWidth*scale)/2)-itemnamefont.MeasureString(CurrentItem.name).X/2, barPosY - itemnamefont.MeasureString(CurrentItem.name).Y), Color.DarkBlue);
+            g.DrawString(itemnamefont, CurrentItem.Name, new Vector2((barPosX + (invWidth*scale)/2)-itemnamefont.MeasureString(CurrentItem.Name).X/2, barPosY - itemnamefont.MeasureString(CurrentItem.Name).Y), Color.DarkBlue);
 
             if (open)
             {
                 g.Draw(invOpen, invPos, Color.White);
             }            
         }
-        public void drawPreview(SpriteBatch sb)
+        public void DrawPreview(SpriteBatch sb)
         {
             if(drag) CurrentItem.Draw(sb);
         }
 
-        public void updateResolution()
+        public void UpdateResolution()
         {
             scale = 3;
             this.width = Game1.screenWidth;
@@ -314,10 +314,10 @@ namespace TestGame.src.graphics.ui
             barPos = new Rectangle(barPosX, barPosY, invWidth*scale, invHeight*scale);
             invPos = new Rectangle(width / 2 - invOpen.Width*scale / 2, height / 2 - invOpen.Height*scale / 2, invOpen.Width*scale, invOpen.Height*scale);
         }
-        public void updateSlot(Input input)
+        public void UpdateSlot(Input input)
         {
-            if (input.currentMouseState.ScrollWheelValue > input.previousMouseState.ScrollWheelValue) CurrentSlot--;
-            if (input.currentMouseState.ScrollWheelValue < input.previousMouseState.ScrollWheelValue) CurrentSlot++;
+            if (input.CurrentMouseState.ScrollWheelValue > input.PreviousMouseState.ScrollWheelValue) CurrentSlot--;
+            if (input.CurrentMouseState.ScrollWheelValue < input.PreviousMouseState.ScrollWheelValue) CurrentSlot++;
             //TODO FIND A BETTER SOLUTION :D
             if (input.KeyDown(Microsoft.Xna.Framework.Input.Keys.D1)) CurrentSlot = 0 + Scroll;
             if (input.KeyDown(Microsoft.Xna.Framework.Input.Keys.D2)) CurrentSlot = 1 + Scroll;

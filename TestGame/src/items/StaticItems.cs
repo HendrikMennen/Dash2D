@@ -27,7 +27,6 @@ namespace TestGame.src.items
         public static Item blackjacket = new ClothItem(4, 2, "Gray Jacket", "textures/models/player/cloth/jacket", Color.Gray);
 
         //Furnitures
-
         public static Item plant1 = new FurnitureItem<Plant1>(1, 0, "Beautiful Plant");
         public static Item cabinet1 = new FurnitureItem<Cabinet1>(2, 0, "Wooden Cabinet");
         public static Item sofa = new FurnitureItem<Sofa>(2, 0, "Gemütliches Sofa");
@@ -82,7 +81,7 @@ namespace TestGame.src.items
         {
             foreach(var item in Items)
             {
-                item.loadContent(cm);
+                item.LoadContent(cm);
             }
         }
 
@@ -90,7 +89,7 @@ namespace TestGame.src.items
         {
             foreach (var item in Items)
             {
-                item.init(level, inv);
+                item.Init(level, inv);
             }
         }
     }

@@ -20,7 +20,6 @@ namespace TestGame.src.items
         int mapY = 0;
         Entity mob;
 
-        public override event System.EventHandler Activated;
 
         public SpawnItem(int column, int row, string name)
         {
@@ -28,19 +27,19 @@ namespace TestGame.src.items
 
             source = new Rectangle(column * 16, row * 16, 16, 16); //ItemSourceRectangle
 
-            this.name = name;
+            this.Name = name;
         }
 
-        public override void loadContent(ContentManager cm)
+        public override void LoadContent(ContentManager cm)
         {
             mob.LoadContent(cm);
             placeable = true;
         }
 
-        public override void update(Input input)
+        public override void Update(Input input)
         {
-            mapX = (int)input.getMapPos(input.MousePos).X;
-            mapY = (int)input.getMapPos(input.MousePos).Y;
+            mapX = (int)input.GetMapPos(input.MousePos).X;
+            mapY = (int)input.GetMapPos(input.MousePos).Y;
             mob.Position = new Vector2(mapX, mapY);
 
             bool draw = true;
@@ -48,7 +47,7 @@ namespace TestGame.src.items
             if (mob.Collision(mob.Position,level)) draw = false;
             
             drawAllowed = draw;
-            if (input.currentMouseState.LeftButton == ButtonState.Released)
+            if (input.CurrentMouseState.LeftButton == ButtonState.Released)
             {
                 if (drawAllowed)
                 {
@@ -57,7 +56,7 @@ namespace TestGame.src.items
                     instance.Position = mob.Position;
                     if (Game1.online) netcode.NetCode.addEntity(instance);
                     else level.AddEntity(instance);
-                    Activated(this, null);                    
+                    //Activated(this, null);                    
                 }else
                 {
                     inv.drag = false;

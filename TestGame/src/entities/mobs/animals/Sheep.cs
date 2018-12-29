@@ -23,7 +23,6 @@ namespace TestGame.src.entities
         
         public Color sheepcolor = Color.White;
         
-        private int count = 0, countmax = 20;
         public Sheep(int x, int y)
         {
             this.x = x;

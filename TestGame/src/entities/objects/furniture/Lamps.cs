@@ -70,7 +70,7 @@ namespace TestGame.src.entities.objects.furniture
             
         }
 
-        public override void onClick(Item sender)
+        public override void OnClick(Item sender)
         {          
             if (On)
             {

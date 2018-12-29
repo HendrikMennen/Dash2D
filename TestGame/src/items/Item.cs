@@ -9,9 +9,6 @@ using System.Runtime.Serialization;
 
 namespace TestGame.src.items
 {
-    [DataContract]
-    [KnownType(typeof(BasicItem))]
-    [KnownType(typeof(ClothItem))]
     //MORE...
     public abstract class Item
     {
@@ -21,8 +18,8 @@ namespace TestGame.src.items
         public Level level;
         
         public bool placeable = false;
-        public string name { get; set; } = "";
-        public virtual event System.EventHandler Activated;
+        public string Name { get; set; } = "";
+        //public virtual event System.EventHandler Activated;
         public delegate void EventHandler(object sender, EventArgs args);
     
 
@@ -33,18 +30,18 @@ namespace TestGame.src.items
         {
 
         }
-        public void init(Level level, Inventory inv)
+        public void Init(Level level, Inventory inv)
         {
             this.level = level;
             this.inv = inv;
         }
 
-        public virtual void loadContent(ContentManager cm)
+        public virtual void LoadContent(ContentManager cm)
         {
 
         }       
 
-        public virtual void update(Input input)
+        public virtual void Update(Input input)
         {
             
         }

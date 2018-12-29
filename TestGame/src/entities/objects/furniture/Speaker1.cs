@@ -45,10 +45,10 @@ namespace TestGame.src.entities.objects.furniture
             base.LoadContent(cm);
         }        
 
-        public override void onClick(Item sender)
+        public override void OnClick(Item sender)
         {
-            base.onClick(sender);
-            Vector2 mapPos = input.getMapPos(input.MousePos);
+            base.OnClick(sender);
+            Vector2 mapPos = input.GetMapPos(input.MousePos);
            
                 if (sender is DiskItem<Song>)
                 {

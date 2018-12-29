@@ -67,7 +67,7 @@ namespace TestGame.src.netcode
             
             if (ep.EntityType.Value != e.GetType()) EntityType.Value = e.GetType();
             if (ep.MoveTo.Value != e.MoveTo) MoveTo.Value = e.MoveTo;
-            if (e is Player && ((Player)e).jacket != null && ep.Player_Jacket.Value != ((Player)e).jacket.ID) Player_Jacket.Value = ((Player)e).jacket.ID;
+            if (e is Player && ((Player)e).Jacket != null && ep.Player_Jacket.Value != ((Player)e).Jacket.ID) Player_Jacket.Value = ((Player)e).Jacket.ID;
             if (e is Mob && ep.Speed.Value != ((Mob)e).speed) Speed.Value = ((Mob)e).speed;
             if (e is Mob && ep.direction.Value != ((Mob)e).direction) direction.Value = (byte)((Mob)e).direction;
             if (e is Mob && !((Mob)e).name.Equals(ep.Name.Value)) Name.Value = ((Mob)e).name;

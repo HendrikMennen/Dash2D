@@ -100,7 +100,7 @@ namespace TestGame
             screenHeight = height;
             graphics.PreferredBackBufferWidth = screenWidth;
             graphics.PreferredBackBufferHeight = screenHeight;
-            inv.updateResolution();
+            inv.UpdateResolution();
             menu.changeResolution();
             chat.changeResolution();
             editor.ChangeResolution();
@@ -128,7 +128,7 @@ namespace TestGame
         {
 
             inv.Init(level, cmd);
-            input.init(level);
+            input.Init(level);
             chat.init(level, input, cmd);
             menu.init(input, cmd);
             cmd.init(this, level, chat, inv, menu, effectmanager, editor);
@@ -166,7 +166,7 @@ namespace TestGame
             basicshadow = Content.Load<Effect>("effects/shadow/shadoweffect");
 
             level.loadContent(Content);
-            inv.loadContent(Content);
+            inv.LoadContent(Content);
             hb.loadContent(Content);
             chat.loadContent(Content);
             menu.loadContent(Content);
@@ -192,7 +192,7 @@ namespace TestGame
 #if true
             level.getClientPlayer().EntityPacket = new EntityPacket(level.getClientPlayer()); //DIFFERENCE DETECTION
             float x = 0, y = 0;
-            input.update(this.IsActive, Mouse.GetState(), Keyboard.GetState(), GamePad.GetState(PlayerIndex.One));           
+            input.Update(this.IsActive, Mouse.GetState(), Keyboard.GetState(), GamePad.GetState(PlayerIndex.One));           
             chat.update();
             mouseX = (int)input.MousePos.X;
             mouseY = (int)input.MousePos.Y;
@@ -206,8 +206,8 @@ namespace TestGame
                 if (input.KeyDown(Keys.S)) y += level.getClientPlayer().speed;
                 if (input.KeyDown(Keys.D)) x += level.getClientPlayer().speed;
 
-                y += (int)Math.Round(input.currentGamepadState.ThumbSticks.Left.Y) * -1;
-                x += (int)Math.Round(input.currentGamepadState.ThumbSticks.Left.X);
+                y += (int)Math.Round(input.CurrentGamepadState.ThumbSticks.Left.Y) * -1;
+                x += (int)Math.Round(input.CurrentGamepadState.ThumbSticks.Left.X);
 
                 if (input.KeyPressed(Keys.PageUp)) time.CurrentTime += 0.1f;
                 if (input.KeyPressed(Keys.PageDown)) time.CurrentTime -= 0.1f;
@@ -255,9 +255,9 @@ namespace TestGame
 
                 case GameState.Running:
 
-                    if (input.currentMouseState.ScrollWheelValue > input.previousMouseState.ScrollWheelValue && input.KeyDown(Keys.LeftControl)) camera.AdjustZoom(0.2f);
-                    if (input.currentMouseState.ScrollWheelValue < input.previousMouseState.ScrollWheelValue && input.KeyDown(Keys.LeftControl)) camera.AdjustZoom(-0.2f);
-                    level.getClientPlayer().move(new Vector2(x,y));
+                    if (input.CurrentMouseState.ScrollWheelValue > input.PreviousMouseState.ScrollWheelValue && input.KeyDown(Keys.LeftControl)) camera.AdjustZoom(0.2f);
+                    if (input.CurrentMouseState.ScrollWheelValue < input.PreviousMouseState.ScrollWheelValue && input.KeyDown(Keys.LeftControl)) camera.AdjustZoom(-0.2f);
+                    level.getClientPlayer().Move(new Vector2(x,y));
                     camera.CenterOn(new Vector2(level.getClientPlayer().Position.X + level.getClientPlayer().width/2, level.getClientPlayer().Position.Y + level.getClientPlayer().height / 2), true);
                     inv.Update(input);
                     break;
@@ -282,7 +282,7 @@ namespace TestGame
             hb.Update(gameTime);
             sound.update();
             NetCode.Update(); //After all movement !important
-            input.updatePrev();
+            input.UpdatePrev();
 #endif
             base.Update(gameTime);
         }
@@ -303,7 +303,7 @@ namespace TestGame
             GraphicsDevice.Clear(Color.Transparent);
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, viewMatrix);
             level.Draw(spriteBatch);
-            if (!menu.Open && !chat.Open) inv.drawPreview(spriteBatch);
+            if (!menu.Open && !chat.Open) inv.DrawPreview(spriteBatch);
             spriteBatch.End();
             //MAIN END
 
@@ -369,7 +369,7 @@ namespace TestGame
 
             foreach (var mob in (level.mobs))
             {
-                if (mob.mapid == level.getClientPlayer().mapid) mob.renderChat(spriteBatch); //Chatbubble + Name
+                if (mob.mapid == level.getClientPlayer().mapid) mob.RenderChat(spriteBatch); //Chatbubble + Name
             }
 
             spriteBatch.DrawString(font, "X: " + level.getClientPlayer().Position.X.ToString(), new Vector2(xStart, 10), Color.Black);

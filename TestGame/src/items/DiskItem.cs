@@ -19,10 +19,10 @@ namespace TestGame.src.items
         {
             source = new Rectangle(column * 16, row * 16, 16, 16); //ItemSourceRectangle   
             this.path = path;
-            this.name = name;
+            this.Name = name;
         }
 
-        public override void loadContent(ContentManager cm)
+        public override void LoadContent(ContentManager cm)
         {
             disk = cm.Load<T>(path);
         }

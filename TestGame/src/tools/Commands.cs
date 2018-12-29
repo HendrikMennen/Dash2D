@@ -61,13 +61,13 @@ namespace TestGame.src.tools
                         Game1.UI_Margin = new Rectangle(0, 0, 0, 0);
                     }
                         chat.changeResolution();
-                        inv.updateResolution();
+                        inv.UpdateResolution();
                 }
                 
 
 
                 if (param[0] == "!map")  level.ChangeMap(Int32.Parse(param[1]));
-                if (param[0] == "!give") inv.addItem(Int32.Parse(param[1]), Int32.Parse(param[2]));
+                if (param[0] == "!give") inv.AddItem(Int32.Parse(param[1]), Int32.Parse(param[2]));
                 if (param[0] == "!sethp") level.getClientPlayer().Health = Int32.Parse(param[1]);
                 if (param[0] == "!setname") level.getClientPlayer().name = param[1];
                 if (param[0] == "!changemenu") menu.changeMenu(Int32.Parse(param[1]));

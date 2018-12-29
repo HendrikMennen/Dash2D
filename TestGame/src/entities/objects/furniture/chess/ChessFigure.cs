@@ -74,21 +74,21 @@ namespace TestGame.src.entities.objects.furniture
 
         public override void Update()
         {
-            if(drag && !dragstart && !moving && !deactivated)
+            if(Drag && !Dragstart && !moving && !deactivated)
             {
-                dragstart = true;
+                Dragstart = true;
                 UpdatePossiblePositions();
             }
-            if (drag && dragstart)
+            if (Drag && Dragstart)
             {
-                tempX = (int)input.getMapPos(input.MousePos).X;
-                tempY = (int)input.getMapPos(input.MousePos).Y;
+                tempX = (int)input.GetMapPos(input.MousePos).X;
+                tempY = (int)input.GetMapPos(input.MousePos).Y;
 
-                if(input.currentMouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Released)
+                if(input.CurrentMouseState.LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Released)
                 {   
                     chessgame.move(this, tempX / 16 * 16, tempY / 16 * 16);
-                    drag = false;
-                    dragstart = false;
+                    Drag = false;
+                    Dragstart = false;
                 }
             }
             else
@@ -121,7 +121,7 @@ namespace TestGame.src.entities.objects.furniture
 
         public override void Draw(SpriteBatch sb)
         {         
-            if (level.getClientPlayer().selectedEntity == this && !moving && !deactivated)
+            if (level.getClientPlayer().SelectedEntity == this && !moving && !deactivated)
             {
                 bool validpos = false;
                 int temptx = tempX / 16 * 16;
@@ -143,7 +143,7 @@ namespace TestGame.src.entities.objects.furniture
                 
             }
 
-            if (drag && !moving && !deactivated)
+            if (Drag && !moving && !deactivated)
             {
                 Rectangle draw = new Rectangle(tempX-8, tempY-8, width, height);
                 sb.Draw(sprite, draw, source, Color.White * 0.4f);

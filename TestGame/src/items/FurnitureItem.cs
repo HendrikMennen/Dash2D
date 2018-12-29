@@ -23,27 +23,26 @@ namespace TestGame.src.items
         int mapX = 0;
         int mapY= 0;
         Furniture furniture;
-        public override event System.EventHandler Activated;
 
         public FurnitureItem(int column, int row, string name)
         {
-            this.name = name;
+            this.Name = name;
             furniture = (Furniture)Activator.CreateInstance(typeof(T));
             //furniture = new Sofa();
             source = new Rectangle(column * 16, row * 16, 16, 16); //ItemSourceRectangle                              
         }
 
-        public override void loadContent(ContentManager cm)
+        public override void LoadContent(ContentManager cm)
         {
             furniture.LoadContent(cm);
             placeable = true;
         }
 
-        public override void update(Input input)
+        public override void Update(Input input)
         {
-            base.update(input);
-            mapX = (int)input.getMapPos(input.MousePos).X/16*16;
-            mapY = (int)input.getMapPos(input.MousePos).Y/16*16;
+            base.Update(input);
+            mapX = (int)input.GetMapPos(input.MousePos).X/16*16;
+            mapY = (int)input.GetMapPos(input.MousePos).Y/16*16;
             furniture.Position = new Vector2(mapX, mapY);
 
             bool draw = true;
@@ -51,11 +50,11 @@ namespace TestGame.src.items
             if (furniture.Collision(furniture.Position, level)) draw = false;
             
             drawAllowed = draw;
-            if (input.currentMouseState.LeftButton == ButtonState.Released) 
+            if (input.CurrentMouseState.LeftButton == ButtonState.Released) 
             {                                
                 if (drawAllowed)
                 {
-                    Activated(this, null);
+                    //Activated(this, null);
                     Furniture instance = (Furniture)Activator.CreateInstance(typeof(T));
                     instance.Position = furniture.Position;
                     instance.mapid = level.getClientPlayer().mapid;

@@ -125,7 +125,7 @@ namespace TestGame.src.graphics.ui
                         }
                         else
                         {
-                            level.getClientPlayer().say(text);
+                            level.getClientPlayer().Say(text);
                             cmd.command("!chat " + level.getClientPlayer().name + " " + text);
                         }
                     }

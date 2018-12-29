@@ -13,10 +13,9 @@ namespace TestGame.src.items
     class BasicItem : Item
     {       
         public readonly string command;
-        public override event System.EventHandler Activated;
         public BasicItem(int column, int row, string name, string command)
         {
-            this.name = name;
+            this.Name = name;
             this.command = command;
             source = new Rectangle(column * 16, row * 16, 16, 16);
         }
@@ -26,12 +25,12 @@ namespace TestGame.src.items
 
         }
 
-        public override void update(Input input)
+        public override void Update(Input input)
         {
-            base.update(input);
+            base.Update(input);
             if (input.MouseLeftButtonPressed())
             {
-                Activated(this, null);
+                //Activated(this, null);
             }
         }
     }

@@ -12,33 +12,33 @@ namespace TestGame.src.input
 {
     public class Input
     {
-        public MouseState currentMouseState { get; private set; }
-        public MouseState previousMouseState { get; private set; }
-        public KeyboardState currentKeyboardState { get; private set; }
-        public KeyboardState previousKeyboardState { get; private set; }
-        public GamePadState currentGamepadState { get; private set; }
-        public GamePadState previousGamepadState { get; private set; }
+        public MouseState CurrentMouseState { get; private set; }
+        public MouseState PreviousMouseState { get; private set; }
+        public KeyboardState CurrentKeyboardState { get; private set; }
+        public KeyboardState PreviousKeyboardState { get; private set; }
+        public GamePadState CurrentGamepadState { get; private set; }
+        public GamePadState PreviousGamepadState { get; private set; }
         public Level level;
         public List<string> text = new List<string>();
         private bool active;
         public event EventHandler TextInput;
         public delegate void EventHandler(object b, TextInputEventArgs e);
 
-        public void update(bool active, MouseState mouseState, KeyboardState keyboardState, GamePadState gamepadState)
+        public void Update(bool active, MouseState mouseState, KeyboardState keyboardState, GamePadState gamepadState)
         {
-            currentKeyboardState = Keyboard.GetState();
-            currentMouseState = mouseState;
-            currentKeyboardState = keyboardState;
-            currentGamepadState = gamepadState;
+            CurrentKeyboardState = Keyboard.GetState();
+            CurrentMouseState = mouseState;
+            CurrentKeyboardState = keyboardState;
+            CurrentGamepadState = gamepadState;
             this.active = active;  
             
         }
                                 
-        public void updatePrev()
+        public void UpdatePrev()
         {
-            previousKeyboardState = currentKeyboardState;
-            previousGamepadState = currentGamepadState;
-            previousMouseState = currentMouseState;
+            PreviousKeyboardState = CurrentKeyboardState;
+            PreviousGamepadState = CurrentGamepadState;
+            PreviousMouseState = CurrentMouseState;
         }
 
         public void WindowsTextInput(object sender, TextInputEventArgs args) //WINDOWS KEYS
@@ -56,13 +56,13 @@ namespace TestGame.src.input
         {
             get
             {
-                return new Vector2(currentMouseState.X, currentMouseState.Y);
+                return new Vector2(CurrentMouseState.X, CurrentMouseState.Y);
             }
         }
 
         public bool MouseLeftButtonPressed()
         {
-            if (currentMouseState.LeftButton == ButtonState.Released && previousMouseState.LeftButton == ButtonState.Pressed)
+            if (CurrentMouseState.LeftButton == ButtonState.Released && PreviousMouseState.LeftButton == ButtonState.Pressed)
             {
                 if(active) return true;
             }
@@ -71,7 +71,7 @@ namespace TestGame.src.input
 
         public bool MouseRightButtonPressed()
         {
-            if (currentMouseState.RightButton == ButtonState.Released && previousMouseState.RightButton == ButtonState.Pressed)
+            if (CurrentMouseState.RightButton == ButtonState.Released && PreviousMouseState.RightButton == ButtonState.Pressed)
             {
                 if(active) return true;
             }
@@ -80,37 +80,37 @@ namespace TestGame.src.input
 
         public bool KeyDown(Keys key)
         {
-            if (active) return currentKeyboardState.IsKeyDown(key);
+            if (active) return CurrentKeyboardState.IsKeyDown(key);
             return false;
         }
         public bool KeyPressed(Keys key)
         {
-            if (currentKeyboardState.IsKeyDown(key) && previousKeyboardState.IsKeyUp(key))
+            if (CurrentKeyboardState.IsKeyDown(key) && PreviousKeyboardState.IsKeyUp(key))
             {
                 if (active) return true;
             }
             return false;
         }
 
-        public void init(Level level)
+        public void Init(Level level)
         {
             this.level = level;
         }
         
-        public Vector2 getMapPos(Vector2 pos)
+        public Vector2 GetMapPos(Vector2 pos)
         {
             return Global.camera.ScreenToWorld(pos);
         }
 
-        public Vector2 getScreenPos(Vector2 pos)
+        public Vector2 GetScreenPos(Vector2 pos)
         {
             return Global.camera.WorldToScreen(pos);
         }
         
-        public Keys[] getKeysPressed()
+        public Keys[] GetKeysPressed()
         {          
-            var keys = currentKeyboardState.GetPressedKeys();
-            var pkeys = previousKeyboardState.GetPressedKeys();
+            var keys = CurrentKeyboardState.GetPressedKeys();
+            var pkeys = PreviousKeyboardState.GetPressedKeys();
             List<Keys> pressedKeys = new List<Keys>();
             if (active) foreach (var key in keys)
             {
@@ -125,41 +125,41 @@ namespace TestGame.src.input
             return pressedKeys.ToArray();
         }
 
-        public void reset()
+        public void Reset()
         {
-            previousKeyboardState = currentKeyboardState;
+            PreviousKeyboardState = CurrentKeyboardState;
         }
 
-        public string getInput()
+        public string GetInput()
         {        
             string input = "";
-            Keys[] keyPressed = getKeysPressed();
+            Keys[] keyPressed = GetKeysPressed();
             if (active) foreach (var key in keyPressed)
             {
                 string k = key.ToString();
                 if (k.Length > 1)
                 {
                     if (key == Keys.Space) input += " ";
-                    if (key == Keys.D0) if (!currentKeyboardState.IsKeyDown(Keys.LeftShift)) input += "0";
-                    if (key == Keys.D1) if (!currentKeyboardState.IsKeyDown(Keys.LeftShift)) input += "1";
-                    if (key == Keys.D2) if (!currentKeyboardState.IsKeyDown(Keys.LeftShift)) input += "2";
-                    if (key == Keys.D3) if (!currentKeyboardState.IsKeyDown(Keys.LeftShift)) input += "3";
-                    if (key == Keys.D4) if (!currentKeyboardState.IsKeyDown(Keys.LeftShift)) input += "4";
-                    if (key == Keys.D5) if (!currentKeyboardState.IsKeyDown(Keys.LeftShift)) input += "5";
-                    if (key == Keys.D6) if (!currentKeyboardState.IsKeyDown(Keys.LeftShift)) input += "6";
-                    if (key == Keys.D7) if (!currentKeyboardState.IsKeyDown(Keys.LeftShift)) input += "7";
-                    if (key == Keys.D8) if (!currentKeyboardState.IsKeyDown(Keys.LeftShift)) input += "8";
-                    if (key == Keys.D9) if (!currentKeyboardState.IsKeyDown(Keys.LeftShift)) input += "9";
+                    if (key == Keys.D0) if (!CurrentKeyboardState.IsKeyDown(Keys.LeftShift)) input += "0";
+                    if (key == Keys.D1) if (!CurrentKeyboardState.IsKeyDown(Keys.LeftShift)) input += "1";
+                    if (key == Keys.D2) if (!CurrentKeyboardState.IsKeyDown(Keys.LeftShift)) input += "2";
+                    if (key == Keys.D3) if (!CurrentKeyboardState.IsKeyDown(Keys.LeftShift)) input += "3";
+                    if (key == Keys.D4) if (!CurrentKeyboardState.IsKeyDown(Keys.LeftShift)) input += "4";
+                    if (key == Keys.D5) if (!CurrentKeyboardState.IsKeyDown(Keys.LeftShift)) input += "5";
+                    if (key == Keys.D6) if (!CurrentKeyboardState.IsKeyDown(Keys.LeftShift)) input += "6";
+                    if (key == Keys.D7) if (!CurrentKeyboardState.IsKeyDown(Keys.LeftShift)) input += "7";
+                    if (key == Keys.D8) if (!CurrentKeyboardState.IsKeyDown(Keys.LeftShift)) input += "8";
+                    if (key == Keys.D9) if (!CurrentKeyboardState.IsKeyDown(Keys.LeftShift)) input += "9";
 
-                    if (key == Keys.OemPeriod) if (!currentKeyboardState.IsKeyDown(Keys.LeftShift)) input += ".";
+                    if (key == Keys.OemPeriod) if (!CurrentKeyboardState.IsKeyDown(Keys.LeftShift)) input += ".";
 
-                    if (key == Keys.D1) if (currentKeyboardState.IsKeyDown(Keys.LeftShift)) input += "!";
-                    if (key == Keys.OemBackslash) if (currentKeyboardState.IsKeyDown(Keys.LeftShift)) input += "?";
-                    if (key == Keys.D7) if (currentKeyboardState.IsKeyDown(Keys.LeftShift)) input += "/"; 
+                    if (key == Keys.D1) if (CurrentKeyboardState.IsKeyDown(Keys.LeftShift)) input += "!";
+                    if (key == Keys.OemBackslash) if (CurrentKeyboardState.IsKeyDown(Keys.LeftShift)) input += "?";
+                    if (key == Keys.D7) if (CurrentKeyboardState.IsKeyDown(Keys.LeftShift)) input += "/"; 
                 }
                 else
                 {
-                    if (!currentKeyboardState.IsKeyDown(Keys.LeftShift)) k = k.ToLower();
+                    if (!CurrentKeyboardState.IsKeyDown(Keys.LeftShift)) k = k.ToLower();
                     input += k;
                 }
             }

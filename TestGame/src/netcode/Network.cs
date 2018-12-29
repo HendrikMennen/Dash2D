@@ -209,7 +209,7 @@ namespace TestGame.src.netcode
                                             if(e.ID == id)
                                             {
                                                 Global.chat.WriteLine(new ChatMessage(e.name, Color.Blue, message, Color.White));
-                                                e.say(message);
+                                                e.Say(message);
                                                 break;
                                             }
                                         }                                                                          

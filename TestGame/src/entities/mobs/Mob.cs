@@ -32,12 +32,12 @@ namespace TestGame.src.entities
 
         public AnimatedMobSprite animatedSprite;
 
-        public string name = "Manfred";
+        public string name = "Manfredi";
         //CHAT BUBBLE      
         private Texture2D chatBubble;
         
         protected SpriteFont font, namefont;
-        public string text { get; set; }
+        public string Text { get; set; }
         
         private int textlength,textheight;
         
@@ -121,9 +121,9 @@ namespace TestGame.src.entities
             Position = new Microsoft.Xna.Framework.Vector2(x, y);
         }
 
-        public void say(string text)
+        public void Say(string text)
         {
-            this.text = text;
+            this.Text = text;
             chatBubbleDuration = 3 * 60; //3 Sekunden
             textlength = (int)font.MeasureString(text).X;
             textheight = (int)font.MeasureString(text).Y;
@@ -157,16 +157,16 @@ namespace TestGame.src.entities
                 //return;
             }           
             movev = new Vector2(xx, yy);
-            move(movev * (speed));
+            Move(movev * (speed));
             //Debug.WriteLine(movev.X + " " + movev.Y);
         }
-        public void move(Vector2 offset)
+        public void Move(Vector2 offset)
         {
-            if(collision(0, (int)Math.Floor(offset.Y)))
+            if(Collision(0, (int)Math.Floor(offset.Y)))
             {
                 offset.Y = 0;
             }
-            if(collision((int)Math.Floor(offset.X), 0))
+            if(Collision((int)Math.Floor(offset.X), 0))
             {
                 offset.X = 0;
             }
@@ -181,7 +181,7 @@ namespace TestGame.src.entities
             else
             {
                 Position += offset;
-                if (level.mapID == mapid) updateAnimation();
+                if (level.mapID == mapid) UpdateAnimation();
             }
 
             if (offset.Y > 0) direction = 3;
@@ -199,9 +199,9 @@ namespace TestGame.src.entities
             base.Draw(sb, color);
         }
 
-        public void renderChat(SpriteBatch sb)
+        public void RenderChat(SpriteBatch sb)
         {
-            Vector2 pos = input.getScreenPos(new Vector2(x+30, y));
+            Vector2 pos = input.GetScreenPos(new Vector2(x+30, y));
             int xa = (int)pos.X;
             int ya = (int)pos.Y;
             //if (Game1.online) sb.DrawString(namefont, name, new Vector2(xa - namefont.MeasureString(name).X/2 , ya), Color.Black); //TODO
@@ -213,19 +213,19 @@ namespace TestGame.src.entities
                 if (Game1.online) yPos -= (int)(namefont.MeasureString(name).Y);
 
                 sb.Draw(chatBubble, new Rectangle(xPos, yPos, 15, chatBubble.Height),new Rectangle(0,0,15,chatBubble.Height), Color.White);
-                for(int i = 0; font.MeasureString(text).X > (chatBubble.Width-20)*i; i++)
+                for(int i = 0; font.MeasureString(Text).X > (chatBubble.Width-20)*i; i++)
                 {
                     sb.Draw(chatBubble, new Rectangle(xPos+(chatBubble.Width-20)*i+15, yPos, chatBubble.Width-15, chatBubble.Height),new Rectangle(15,0,chatBubble.Width-15,chatBubble.Height), Color.White);
                 }                               
-                sb.DrawString(font, text, new Vector2(xPos + 15, yPos + (int)(0.5)),Color.Black);
+                sb.DrawString(font, Text, new Vector2(xPos + 15, yPos + (int)(0.5)),Color.Black);
             }
             else
             {
-                text = "";
+                Text = "";
             }
         }
     
-        public void updateAnimation()
+        public void UpdateAnimation()
         {
            
             animatedSprite.setDirection(direction);
@@ -240,7 +240,7 @@ namespace TestGame.src.entities
                 }                    
             }
 
-        public bool collision(int xa, int ya) //TODO ENTITY COLLISION
+        public bool Collision(int xa, int ya) //TODO ENTITY COLLISION
         {
             xa += (x);
             ya += (y);

@@ -15,24 +15,24 @@ namespace TestGame.src.items
     [DataContract]
     public class ClothItem : Item
     {
-        public Texture2D sprite_walk { get; private set; }
-        public Texture2D sprite_run { get; private set; }
+        public Texture2D Sprite_walk { get; private set; }
+        public Texture2D Sprite_run { get; private set; }
         [DataMember]
-        public Color clothcolor { get; private set; }
-        private string path;
+        public Color Clothcolor { get; private set; }
+        readonly string path;
 
         public ClothItem(int column, int row, string name, string path, Color color)
         {
-            this.name = name;
+            this.Name = name;
             source = new Rectangle(column * 16, row * 16, 16, 16);
-            clothcolor = color;
+            Clothcolor = color;
             this.path = path;
         }
 
-        public override void loadContent(ContentManager cm)
+        public override void LoadContent(ContentManager cm)
         {
-            sprite_walk = cm.Load<Texture2D>(path);
-            sprite_run = cm.Load<Texture2D>(path + "_run");
+            Sprite_walk = cm.Load<Texture2D>(path);
+            Sprite_run = cm.Load<Texture2D>(path + "_run");
 
             //APPLY JACKET COLOR
             //Global.replaceColor(sprite_walk, new Color(255, 255, 255), clothcolor);
@@ -44,16 +44,16 @@ namespace TestGame.src.items
             //Global.replaceColor(sprite_run, new Color(229, 229, 229), new Color(clothcolor.R - 50, clothcolor.G - 50, clothcolor.B - 50));
             //Global.replaceColor(sprite_run, new Color(6, 6, 8), Color.Black);
 
-            base.loadContent(cm);
+            base.LoadContent(cm);
         }
 
-        public override void update(Input input)
+        public override void Update(Input input)
         {
             if (input.MouseRightButtonPressed())
             {
-                level.getClientPlayer().jacket = this;
+                level.getClientPlayer().Jacket = this;
             }
-            base.update(input);
+            base.Update(input);
         }
     }
 }

@@ -14,7 +14,6 @@ using TestGame.src.tools;
 using System.Diagnostics;
 using TestGame.src.entities.objects.furniture;
 using TestGame.src.netcode;
-using Microsoft.Xna.Framework;
 
 namespace TestGame
 {
@@ -24,9 +23,11 @@ namespace TestGame
         static void Main(string[] args)
         {
             serverLevel = new ServerLevel();
-            
-            Network.Config = new NetPeerConfiguration("TestGame"); // The server and the client program must also use this name, so that can communicate with each other.
-            Network.Config.Port = 25232; 
+
+            Network.Config = new NetPeerConfiguration("TestGame")
+            {
+                Port = 25232
+            }; // The server and the client program must also use this name, so that can communicate with each other.
             Network.Server = new NetServer(Network.Config);
             Network.Config.EnableMessageType(NetIncomingMessageType.DiscoveryRequest);
             Network.Server.Start();
@@ -34,7 +35,7 @@ namespace TestGame
             Console.Title = "TestGame Server GAMMA";
             WriteLine("Server started on Port: " + Network.Config.Port, ConsoleColor.Blue);
             WriteLine("Waiting for connections...", ConsoleColor.Blue);
-            serverLevel.loadEntities();            
+            serverLevel.LoadEntities();            
 
             //INIT
             Global.rdm = new Random();
@@ -63,7 +64,7 @@ namespace TestGame
 
         class Network // A Basics Network class
         {
-            private static int MAXCLIENTS = 20;
+            private const int MAXCLIENTS = 20;
             public static NetServer Server; //the Server
             public static NetPeerConfiguration Config; //the Server config
                                                        /*public*/
@@ -91,7 +92,7 @@ namespace TestGame
                                             p.ApplyPacket(receiveE);
                                             ServerPlayer sp = new ServerPlayer(p, incmsg.SenderConnection);
                                             serverLevel.Connect(sp);
-                                            serverLevel.refreshEntities(incmsg.SenderConnection, receiveE.MapID.Value);
+                                            serverLevel.RefreshEntities(incmsg.SenderConnection, receiveE.MapID.Value);
                                         }
                                         break;
 
@@ -173,7 +174,7 @@ namespace TestGame
                                                     if (e.ID == entityid)
                                                     {                                                       
                                                         WriteLine("Entity ONCLICK at (" + e.Position.X + "|" + e.Position.Y + ") on Map: " + e.mapid, ConsoleColor.Blue);
-                                                        e.onClick(StaticItems.Items[itemid]);
+                                                        e.OnClick(StaticItems.Items[itemid]);
                                                         break;
                                                     }
                                                 }                                                                                             
@@ -290,7 +291,7 @@ namespace TestGame
                 players.Remove(e);
                 entities.Remove(e.Player);
             }
-            public void refreshEntities(List<NetConnection> user, int mapid) //ALL SERVER ENTITIES
+            public void RefreshEntities(List<NetConnection> user, int mapid) //ALL SERVER ENTITIES
             {
                 int bytecounter = 0;
                 Network.outmsg = Network.Server.CreateMessage();
@@ -308,14 +309,16 @@ namespace TestGame
                 Network.Server.SendMessage(Network.outmsg, user, NetDeliveryMethod.Unreliable, 0);
             }
 
-            public void refreshEntities(NetConnection user, int mapid)
+            public void RefreshEntities(NetConnection user, int mapid)
             {
-                List<NetConnection> users = new List<NetConnection>();
-                users.Add(user);
-                refreshEntities(users, mapid);
+                List<NetConnection> users = new List<NetConnection>
+                {
+                    user
+                };
+                RefreshEntities(users, mapid);
             }
 
-            public void refreshEntity(List<NetConnection> user, EntityPacket packet)
+            public void RefreshEntity(List<NetConnection> user, EntityPacket packet)
             {
                 Network.outmsg = Network.Server.CreateMessage();
                 
@@ -328,14 +331,16 @@ namespace TestGame
                 Network.Server.SendMessage(Network.outmsg, user, NetDeliveryMethod.Unreliable, 0);
             }
 
-            public void refreshEntity(NetConnection user, EntityPacket packet)
+            public void RefreshEntity(NetConnection user, EntityPacket packet)
             {
-                List<NetConnection> users = new List<NetConnection>();
-                users.Add(user);
-                refreshEntity(users, packet);
+                List<NetConnection> users = new List<NetConnection>
+                {
+                    user
+                };
+                RefreshEntity(users, packet);
             }
 
-            public void loadEntities()
+            public void LoadEntities()
             {
                 maps.Add(SaveGame.DeserializeMap<Map>("Disco"));
                 maps.Add(SaveGame.DeserializeMap<Map>("christmas"));
@@ -365,7 +370,7 @@ namespace TestGame
                     e.FixedUpdate();
                     e.EntityPacket = new EntityPacket(e, e.EntityPacket); //NUR VERÄNDERTE WERTE SPEICHERN
                     if(!e.EntityPacket.Empty())
-                    if (Network.Server.ConnectionsCount > 0) refreshEntity(Network.Server.Connections, e.EntityPacket);                      
+                    if (Network.Server.ConnectionsCount > 0) RefreshEntity(Network.Server.Connections, e.EntityPacket);                      
                 }               
 
                 if (Network.Server.ConnectionsCount == players.Count) //If the number of the player object actually corresponds to the number of connected clients.
@@ -374,7 +379,7 @@ namespace TestGame
                     {
                         EntityPacket packet = new EntityPacket(players[i].Player, players[i].Player.EntityPacket);
                         if(players[i].Player.MoveTo2 == players[i].Player.MoveTo) packet.MoveTo.Value = players[i].Player.MoveTo;
-                        refreshEntity(Network.Server.Connections, packet);
+                        RefreshEntity(Network.Server.Connections, packet);
                         players[i].timeOut++;
                         if (players[i].timeOut > 180) //TIMEOUT
                         {                                                  

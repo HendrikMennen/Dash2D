@@ -181,12 +181,12 @@ namespace TestGame.src.level
         {
             Vector2 mousePos = input.MousePos;
             Vector2 tilesetPos = TilesetView.ScreenToWorld(input.MousePos);
-            Vector2 mapPos = input.getMapPos(input.MousePos);
+            Vector2 mapPos = input.GetMapPos(input.MousePos);
 
             if (!tilesetScroll)
             {
-                if (input.currentMouseState.ScrollWheelValue > input.previousMouseState.ScrollWheelValue && input.KeyDown(Keys.LeftControl)) Global.camera.AdjustZoom(0.2f);
-                if (input.currentMouseState.ScrollWheelValue < input.previousMouseState.ScrollWheelValue && input.KeyDown(Keys.LeftControl)) Global.camera.AdjustZoom(-0.2f);
+                if (input.CurrentMouseState.ScrollWheelValue > input.PreviousMouseState.ScrollWheelValue && input.KeyDown(Keys.LeftControl)) Global.camera.AdjustZoom(0.2f);
+                if (input.CurrentMouseState.ScrollWheelValue < input.PreviousMouseState.ScrollWheelValue && input.KeyDown(Keys.LeftControl)) Global.camera.AdjustZoom(-0.2f);
             }
 
             if (input.KeyPressed(Keys.Z) && input.KeyDown(Keys.LeftControl)) Undo();
@@ -213,10 +213,10 @@ namespace TestGame.src.level
 
             if (mousePos.X > TileSelectorField.X && mousePos.X < TileSelectorField.X + TileSelectorField.Width && mousePos.Y > TileSelectorField.Y && mousePos.Y < TileSelectorField.Y + TileSelectorField.Height)
             {
-                if (input.currentMouseState.ScrollWheelValue > input.previousMouseState.ScrollWheelValue && input.KeyDown(Keys.LeftControl)) zoomTileset(0.2f);
-                if (input.currentMouseState.ScrollWheelValue < input.previousMouseState.ScrollWheelValue && input.KeyDown(Keys.LeftControl)) zoomTileset(-0.2f);
+                if (input.CurrentMouseState.ScrollWheelValue > input.PreviousMouseState.ScrollWheelValue && input.KeyDown(Keys.LeftControl)) zoomTileset(0.2f);
+                if (input.CurrentMouseState.ScrollWheelValue < input.PreviousMouseState.ScrollWheelValue && input.KeyDown(Keys.LeftControl)) zoomTileset(-0.2f);
                 tilesetScroll = true;    
-                if (input.ButtonDown(input.currentMouseState.LeftButton))
+                if (input.ButtonDown(input.CurrentMouseState.LeftButton))
                 {
                     currentEditorMode = EditorMode.TileSelector;
                 }
@@ -230,7 +230,7 @@ namespace TestGame.src.level
             {
                 if (mousePos.X > TileSelectorField.X && mousePos.X < TileSelectorField.X + TileSelectorField.Width && mousePos.Y > TileSelectorField.Y && mousePos.Y < TileSelectorField.Y + TileSelectorField.Height)
                 {
-                    if (input.ButtonDown(input.currentMouseState.LeftButton))
+                    if (input.ButtonDown(input.CurrentMouseState.LeftButton))
                     {
                         if (!Drag)
                         {
@@ -238,7 +238,7 @@ namespace TestGame.src.level
                             Drag = true;
                         }
                     }
-                    if (!input.ButtonDown(input.currentMouseState.LeftButton))
+                    if (!input.ButtonDown(input.CurrentMouseState.LeftButton))
                     {
                         if (Drag)
                         {
@@ -274,7 +274,7 @@ namespace TestGame.src.level
 
                 case EditorMode.Place:
                   
-                    if (input.ButtonDown(input.currentMouseState.LeftButton))
+                    if (input.ButtonDown(input.CurrentMouseState.LeftButton))
                     {
                         int mapX = (int)(mapPos.X) / level.CurrentMap.TileWidth;
                         int mapY = (int)(mapPos.Y) / level.CurrentMap.TileHeight;
@@ -300,7 +300,7 @@ namespace TestGame.src.level
 
                 case EditorMode.Rubber:
 
-                    if (input.ButtonDown(input.currentMouseState.LeftButton))
+                    if (input.ButtonDown(input.CurrentMouseState.LeftButton))
                     {
                         int mapX = (int)(mapPos.X) / level.CurrentMap.TileWidth;
                         int mapY = (int)(mapPos.Y) / level.CurrentMap.TileHeight;
@@ -318,7 +318,7 @@ namespace TestGame.src.level
                     break;
                
                 case EditorMode.ObjectAdd:
-                    if (input.ButtonDown(input.currentMouseState.LeftButton) && !objectdrag)
+                    if (input.ButtonDown(input.CurrentMouseState.LeftButton) && !objectdrag)
                     {
                         objectposition.X = (int)mapPos.X;
                         objectposition.Y = (int)mapPos.Y;
@@ -330,7 +330,7 @@ namespace TestGame.src.level
                         objectposition.Height = (int)mapPos.Y - objectposition.Y;
                     }
 
-                    if (!input.ButtonDown(input.currentMouseState.LeftButton) && objectdrag)
+                    if (!input.ButtonDown(input.CurrentMouseState.LeftButton) && objectdrag)
                     {
                         if (objectposition.X < 0)
                         {
@@ -461,7 +461,7 @@ namespace TestGame.src.level
                 button.draw(sb);
             }
 
-            Vector2 size = input.getMapPos(new Vector2(sourceRectangle.Width * level.CurrentMap.TileWidth , sourceRectangle.Height * level.CurrentMap.TileHeight));
+            Vector2 size = input.GetMapPos(new Vector2(sourceRectangle.Width * level.CurrentMap.TileWidth , sourceRectangle.Height * level.CurrentMap.TileHeight));
 
             int xStart = 10 + TileSelectorBackground.Width;
             sb.DrawString(buttonFont, currentEditorMode.ToString(), new Vector2(xStart, 130), Color.Black);
@@ -481,7 +481,7 @@ namespace TestGame.src.level
                 foreach (var tp in level.CurrentMap.teleporters) sb.Draw(TileSelector, tp.position, Color.Blue * 0.5f);
             }          
             
-            if(input.MousePos.X > TileSelectorBackground.Width && currentEditorMode == EditorMode.Place) sb.Draw(currentTileset.texture, new Rectangle(((int)input.getMapPos(input.MousePos).X)/ level.CurrentMap.TileWidth * level.CurrentMap.TileWidth, ((int)input.getMapPos(input.MousePos).Y) / level.CurrentMap.TileHeight * level.CurrentMap.TileHeight, sourceRectangle.Width, sourceRectangle.Height), sourceRectangle, Color.Gray * 0.5f);
+            if(input.MousePos.X > TileSelectorBackground.Width && currentEditorMode == EditorMode.Place) sb.Draw(currentTileset.texture, new Rectangle(((int)input.GetMapPos(input.MousePos).X)/ level.CurrentMap.TileWidth * level.CurrentMap.TileWidth, ((int)input.GetMapPos(input.MousePos).Y) / level.CurrentMap.TileHeight * level.CurrentMap.TileHeight, sourceRectangle.Width, sourceRectangle.Height), sourceRectangle, Color.Gray * 0.5f);
         }
 
         public void moveTileset(Vector2 pos)

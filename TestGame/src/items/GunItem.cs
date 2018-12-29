@@ -27,23 +27,23 @@ namespace TestGame.src.items
 
         public GunItem(int column, int row, Rectangle gunsource_v, Rectangle gunsource_h, string name)
         {
-            this.name = name;
+            this.Name = name;
             source = new Rectangle(column * 16, row * 16, 16, 16); //ItemSourceRectangle        
             this.gunsource_vertical = gunsource_v;
             this.gunsource_horizontal = gunsource_h;
             this.gunsource = gunsource_vertical;
         }
 
-        public override void loadContent(ContentManager cm)
+        public override void LoadContent(ContentManager cm)
         {
-            base.loadContent(cm);
+            base.LoadContent(cm);
             guns = cm.Load<Texture2D>("textures/objects/guns");
         }
 
-        public override void update(Input input)
+        public override void Update(Input input)
         {
-            int mapX = (int)input.getMapPos(input.MousePos).X;
-            int mapY = (int)input.getMapPos(input.MousePos).Y;
+            int mapX = (int)input.GetMapPos(input.MousePos).X;
+            int mapY = (int)input.GetMapPos(input.MousePos).Y;
 
             if(Math.Abs(mapX-level.getClientPlayer().Position.X) > Math.Abs(mapY - level.getClientPlayer().Position.Y))
             {
@@ -59,7 +59,7 @@ namespace TestGame.src.items
             if (input.MouseLeftButtonPressed())
             {
                 if (ammo <= 0) return;
-                projectile = (Projectile)Activator.CreateInstance(typeof(T), (int)projectilepos.X , (int)projectilepos.Y, input.getMapPos(input.MousePos));
+                projectile = (Projectile)Activator.CreateInstance(typeof(T), (int)projectilepos.X , (int)projectilepos.Y, input.GetMapPos(input.MousePos));
                 projectile.mapid = level.getClientPlayer().mapid;
                 level.AddEntity(projectile);
                 ammo--;

@@ -69,9 +69,9 @@ namespace TestGame.src.entities
         [ContentSerializerIgnore]
         protected Entity LastCollision;
         [ContentSerializerIgnore]
-        public bool drag { get; set; } = false;
+        public bool Drag { get; set; } = false;
         [ContentSerializerIgnore]
-        public bool dragstart { get; set; } = false;
+        public bool Dragstart { get; set; } = false;
         [ContentSerializerIgnore]
         public bool Flat { get; protected set; } = false;
 
@@ -176,7 +176,7 @@ namespace TestGame.src.entities
             this.input = input;
         }      
 
-        public virtual void onClick(Item sender)
+        public virtual void OnClick(Item sender)
         {
 
         }

@@ -11,8 +11,10 @@ namespace TestGame.src.level
     {       
         public static void Serialize<T>(string filename, T data)
         {
-            XmlWriterSettings settings = new XmlWriterSettings();
-            settings.Indent = true;
+            XmlWriterSettings settings = new XmlWriterSettings
+            {
+                Indent = true
+            };
             if (!filename.EndsWith(".xml")) filename += ".xml";
             using (XmlWriter writer = XmlWriter.Create(filename, settings))
             {
@@ -22,8 +24,10 @@ namespace TestGame.src.level
 
         public static void SerializeMap<T>(string filename, T data)
         {
-            XmlWriterSettings settings = new XmlWriterSettings();
-            settings.Indent = true;
+            XmlWriterSettings settings = new XmlWriterSettings
+            {
+                Indent = true
+            };
             if (!filename.EndsWith(".xml")) filename += ".xml";
             filename = "Content/maps/" + filename; // ; Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + " / OneDrive / Projects / Dash2D / TestGame / Content /
             using (XmlWriter writer = XmlWriter.Create(filename, settings))

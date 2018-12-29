@@ -55,12 +55,12 @@ namespace TestGame.src.entities.objects.furniture
             base.Update();
         }
 
-        public override void onClick(Item sender)
+        public override void OnClick(Item sender)
         {
             wiggle = true;
             wigglecount++;
             wigglerot = 0.0d;
-            base.onClick(sender);           
+            base.OnClick(sender);           
         }
     }
 

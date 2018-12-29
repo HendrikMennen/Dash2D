@@ -51,7 +51,7 @@ namespace TestGame.src.graphics.ui.menu.components
             if (activated)
             {
                 if (input.KeyPressed(Keys.Back)) if (text.Length > 0) text = text.Remove(text.Length - 1);
-                text += input.getInput();
+                text += input.GetInput();
                 if (input.KeyPressed(Keys.Enter))
                 {              
                     EventArgs e = null;

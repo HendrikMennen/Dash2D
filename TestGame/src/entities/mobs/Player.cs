@@ -27,9 +27,9 @@ namespace TestGame.src.entities
         private Texture2D sprite_jacket;
 
         [DataMember]
-        public ClothItem jacket { get; set; }
+        public ClothItem Jacket { get; set; }
 
-        public Entity selectedEntity { get; set; }
+        public Entity SelectedEntity { get; set; }
         
         public Player(Vector2 position, int MapID) : base(position, MapID)
         {
@@ -68,13 +68,13 @@ namespace TestGame.src.entities
             if(speed >= 2)
             {
                 sprite = sprite_run;
-                if (jacket != null) sprite_jacket = jacket.sprite_run;
+                if (Jacket != null) sprite_jacket = Jacket.Sprite_run;
                 columns = 6;               
             }
             else
             {
                 sprite = sprite_walk;
-                if (jacket != null) sprite_jacket = jacket.sprite_walk;
+                if (Jacket != null) sprite_jacket = Jacket.Sprite_walk;
                 columns = 4;
             }
             if(columns != animatedSprite.Columns)animatedSprite.Columns = columns;
@@ -100,7 +100,7 @@ namespace TestGame.src.entities
 
         public override void ApplyPacket(EntityPacket ep)
         {
-            if (ep.Player_Jacket.Available) jacket = (ClothItem)StaticItems.Items[ep.Player_Jacket.Value];
+            if (ep.Player_Jacket.Available) Jacket = (ClothItem)StaticItems.Items[ep.Player_Jacket.Value];
             base.ApplyPacket(ep);
         }
 
@@ -110,7 +110,7 @@ namespace TestGame.src.entities
             base.Draw(sb); 
 
             //DRAW JACKET
-            if (jacket != null && sprite_jacket != null) sb.Draw(sprite_jacket, new Rectangle(x, y, width, height), animatedSprite.getSourceRect(), jacket.clothcolor, 0f, new Vector2(), animatedSprite.flip, 0f);
+            if (Jacket != null && sprite_jacket != null) sb.Draw(sprite_jacket, new Rectangle(x, y, width, height), animatedSprite.getSourceRect(), Jacket.Clothcolor, 0f, new Vector2(), animatedSprite.flip, 0f);
             //DRAW FACE
             Rectangle source = new Rectangle(animatedSprite.row * 16, 0, 16, 16); 
             Rectangle destination = new Rectangle(x+12, y+3, 16, 16); 
