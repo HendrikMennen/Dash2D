@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E1135B1F-1DCE-4032-A3C3-B53873664EAE}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TestGame</RootNamespace>
+    <AssemblyName>TestGame</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MonoGamePlatform>Windows</MonoGamePlatform>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\Hendrik\Desktop\Spiel\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Unc</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>//localhost/Users/Hendrik/Desktop/Spiel/</InstallUrl>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>24</ApplicationRevision>
+    <ApplicationVersion>0.1.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\..\Documents\Visual Studio 2015\Projects\TestGame\Debug\</OutputPath>
+    <BaseIntermediateOutputPath>..\..\..\..\Documents\Visual Studio 2015\Projects\TestGame\obj\</BaseIntermediateOutputPath>
+    <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\..\Documents\Visual Studio 2015\Projects\TestGame\Release\</OutputPath>
+    <DefineConstants>TRACE;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>src\tools\Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>450F3752DBB1E0FE8BCB34A7E2C0929C5B2F41F7</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>TestGame_1_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="src\effects\PortalPlayerEffect.cs" />
+    <Compile Include="src\entities\objects\furniture\chess\ChessFarmer.cs" />
+    <Compile Include="src\entities\objects\furniture\chess\ChessFigure.cs" />
+    <Compile Include="src\entities\objects\furniture\chess\ChessHorse.cs" />
+    <Compile Include="src\entities\objects\furniture\chess\ChessKing.cs" />
+    <Compile Include="src\entities\mobs\npcs\Joseph.cs" />
+    <Compile Include="src\entities\objects\furniture\chess\ChessPlaceholder.cs" />
+    <Compile Include="src\entities\objects\furniture\chess\ChessQueen.cs" />
+    <Compile Include="src\entities\objects\furniture\chess\ChessRunner.cs" />
+    <Compile Include="src\entities\objects\furniture\chess\ChessTower.cs" />
+    <Compile Include="src\entities\objects\furniture\Sofa.cs" />
+    <Compile Include="src\entities\particles\BloodParticle.cs" />
+    <Compile Include="src\entities\particles\Particle.cs" />
+    <Compile Include="src\entities\objects\furniture\AnimatedFurniture.cs" />
+    <Compile Include="src\entities\objects\furniture\Beachchair.cs" />
+    <Compile Include="src\entities\objects\furniture\Fence.cs" />
+    <Compile Include="src\entities\objects\furniture\Particelspawner.cs" />
+    <Compile Include="src\entities\objects\furniture\Water.cs" />
+    <Compile Include="src\entities\particles\RandomParticle.cs" />
+    <Compile Include="src\entities\projectiles\Projectile.cs" />
+    <Compile Include="src\graphics\ui\Healthbar.cs" />
+    <Compile Include="src\items\ClothItem.cs" />
+    <Compile Include="src\items\GunItem.cs" />
+    <Compile Include="src\items\StaticItems.cs" />
+    <Compile Include="src\modules\MapModule.cs" />
+    <Compile Include="src\netcode\EntityPacket.cs" />
+    <Compile Include="src\netcode\PacketProperty.cs" />
+    <Compile Include="src\netcode\PacketPropertyBase.cs" />
+    <Compile Include="src\netcode\PacketPropertyType.cs" />
+    <Compile Include="src\netcode\PacketPropertyVector2.cs" />
+    <Compile Include="src\sound\Sound.cs" />
+    <Compile Include="src\modules\ChessGame.cs" />
+    <Compile Include="src\tools\BinarySerializer.cs" />
+    <Compile Include="src\tools\CollisionDetector.cs" />
+    <Compile Include="src\tools\Commands.cs" />
+    <Compile Include="src\effects\AlcoholPlayerEffect.cs" />
+    <Compile Include="src\effects\EffectManager.cs" />
+    <Compile Include="src\effects\PlayerEffect.cs" />
+    <Compile Include="src\entities\objects\AnimatedTile.cs" />
+    <Compile Include="src\entities\Entity.cs" />
+    <Compile Include="src\entities\mobs\animals\Sheep.cs" />
+    <Compile Include="src\entities\mobs\Mob.cs" />
+    <Compile Include="src\entities\mobs\npcs\Npc.cs" />
+    <Compile Include="src\entities\mobs\Player.cs" />
+    <Compile Include="src\entities\objects\furniture\Grass.cs" />
+    <Compile Include="src\entities\objects\furniture\Speaker1.cs" />
+    <Compile Include="src\entities\objects\furniture\Cabinet1.cs" />
+    <Compile Include="src\entities\objects\furniture\Lamps.cs" />
+    <Compile Include="src\entities\objects\furniture\Furniture.cs" />
+    <Compile Include="src\entities\objects\furniture\Tree.cs" />
+    <Compile Include="src\entities\objects\furniture\TV.cs" />
+    <Compile Include="src\graphics\animations\AnimatedMobSprite.cs" />
+    <Compile Include="src\graphics\animations\AnimatedSprite.cs" />
+    <Compile Include="src\graphics\Camera.cs" />
+    <Compile Include="src\graphics\effects\Light.cs" />
+    <Compile Include="src\graphics\effects\Time.cs" />
+    <Compile Include="src\graphics\ui\Chat.cs" />
+    <Compile Include="src\graphics\ui\menu\components\Button.cs" />
+    <Compile Include="src\graphics\ui\menu\components\ListMenu.cs" />
+    <Compile Include="src\graphics\ui\menu\components\MenuComponent.cs" />
+    <Compile Include="src\graphics\ui\menu\components\OptionPane.cs" />
+    <Compile Include="src\graphics\ui\menu\Interface.cs" />
+    <Compile Include="src\graphics\ui\menu\menus\PauseMenu.cs" />
+    <Compile Include="src\graphics\ui\menu\menus\ServerMenu.cs" />
+    <Compile Include="src\graphics\ui\menu\components\Textfield.cs" />
+    <Compile Include="src\graphics\ui\menu\menus\Menu.cs" />
+    <Compile Include="src\graphics\ui\MousePointer.cs" />
+    <Compile Include="src\graphics\ui\Inventory.cs" />
+    <Compile Include="src\input\Input.cs" />
+    <Compile Include="src\items\BasicItem.cs" />
+    <Compile Include="src\items\DiskItem.cs" />
+    <Compile Include="src\items\FurnitureItem.cs" />
+    <Compile Include="src\entities\objects\furniture\Plant1.cs" />
+    <Compile Include="src\items\Item.cs" />
+    <Compile Include="src\items\SpawnItem.cs" />
+    <Compile Include="src\level\Generator.cs" />
+    <Compile Include="src\level\Level.cs" />
+    <Compile Include="Game1.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\level\Map.cs" />
+    <Compile Include="src\level\MapEditor.cs" />
+    <Compile Include="src\level\SaveGame.cs" />
+    <Compile Include="src\netcode\Network.cs" />
+    <Compile Include="src\tools\FrameCounter.cs" />
+    <Compile Include="src\tools\Global.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Lidgren.Network, Version=3.7.1.189, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="MonoGame.Framework">
+      <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework.Content.Pipeline">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\MSBuild\MonoGame\v3.0\Tools\MonoGame.Framework.Content.Pipeline.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Serialization" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\tools\Icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <MonoGameContentReference Include="Content\Content.mgcb" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
