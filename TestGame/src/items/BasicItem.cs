@@ -9,7 +9,6 @@ using System.Runtime.Serialization;
 
 namespace TestGame.src.items
 {
-    [DataContract]
     class BasicItem : Item
     {       
         public readonly string command;

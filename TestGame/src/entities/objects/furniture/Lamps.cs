@@ -18,7 +18,6 @@ using TestGame.src.netcode;
 
 namespace TestGame.src.entities.objects.furniture
 {
-    [DataContract]
     public abstract class Lamp : AnimatedFurniture
     {
         
@@ -41,13 +40,11 @@ namespace TestGame.src.entities.objects.furniture
             }
         }
         [ContentSerializer]
-        [DataMember]
         protected bool on = false;      
         public Color lightColor = Color.White;
         [ContentSerializerIgnore]
         public float scale { get; protected set; } = 1f;
-        [ContentSerializerIgnore]
-        [DataMember]     
+        [ContentSerializerIgnore] 
         public bool switchable = true;
 
         public Lamp(Vector2 Position, int MapID) : base(Position, MapID)
@@ -91,8 +88,6 @@ namespace TestGame.src.entities.objects.furniture
             else if (Animation != null) Animation.column = 0;
         }
     }
-
-    [DataContract]
     class Torch : Lamp
     {
         int animationCounter = 0;
@@ -152,7 +147,6 @@ namespace TestGame.src.entities.objects.furniture
         }
     }
 
-    [DataContract]
     class CristmasStar : Lamp
     {
         public CristmasStar(Vector2 Position, int MapID) : base(Position, MapID)
@@ -187,7 +181,6 @@ namespace TestGame.src.entities.objects.furniture
         }
     }
 
-    [DataContract]
     class DiscoLight : Lamp
     {
         int animationCounter = 0;
@@ -247,7 +240,6 @@ namespace TestGame.src.entities.objects.furniture
         }
     }
 
-    [DataContract]
     class GrandmasLamp : Furniture
     {
         public GrandmasLamp(int x, int y)
@@ -275,7 +267,6 @@ namespace TestGame.src.entities.objects.furniture
         }
     }
 
-    [DataContract]
     class Latern : Lamp
     {
         public Latern(int x, int y)
@@ -310,7 +301,6 @@ namespace TestGame.src.entities.objects.furniture
         }    
     }
 
-    [DataContract]
     class MagicGlass : Lamp
     {
         public MagicGlass(int x, int y)

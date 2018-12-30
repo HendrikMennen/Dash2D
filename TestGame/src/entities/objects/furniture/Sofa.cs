@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 
 namespace TestGame.src.entities.objects.furniture
 {
-    [DataContract]
     public class Sofa : Furniture
     {
         public Sofa (int x, int y)

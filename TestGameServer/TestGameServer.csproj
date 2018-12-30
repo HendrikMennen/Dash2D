@@ -53,11 +53,14 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <PlatformTarget>x86</PlatformTarget>
-    <OutputPath>bin\x86\Debug\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <PlatformTarget>x86</PlatformTarget>
-    <OutputPath>bin\x86\Release\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon_server.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Lidgren.Network, Version=3.7.1.189, Culture=neutral, processorArchitecture=MSIL" />
@@ -89,6 +92,9 @@
       <Project>{e1135b1f-1dce-4032-a3c3-b53873664eae}</Project>
       <Name>TestGame</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icon_server.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

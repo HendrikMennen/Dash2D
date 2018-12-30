@@ -8,7 +8,6 @@ using System.Runtime.Serialization;
 
 namespace TestGame.src.entities.objects.furniture
 {
-    [DataContract]
     class Beachchair : Furniture
     {
         public Beachchair(int x, int y)

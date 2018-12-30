@@ -57,7 +57,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>src\tools\Icon.ico</ApplicationIcon>
+    <ApplicationIcon>icon_client.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>false</SignManifests>
@@ -179,6 +179,7 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="icon_client.ico" />
     <Content Include="src\tools\Icon.ico" />
   </ItemGroup>
   <ItemGroup>

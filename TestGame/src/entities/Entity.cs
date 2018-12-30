@@ -14,47 +14,17 @@ using TestGame.src.netcode;
 using TestGame.src.tools;
 
 namespace TestGame.src.entities
-{
-    [DataContract]   
-    [KnownType(typeof(Rectangle))]
-    [KnownType(typeof(Vector2))]    
-    [KnownType(typeof(Sofa))]
-    [KnownType(typeof(Speaker1))]
-    [KnownType(typeof(Particelspawner))]      
-    [KnownType(typeof(TV))]
-    [KnownType(typeof(Water))]     
-    [KnownType(typeof(Beachchair))]
-    [KnownType(typeof(Cabinet1))]
-    [KnownType(typeof(Fence1))]
-    [KnownType(typeof(Grass))]
-    [KnownType(typeof(Plant1))]
-    //LAMPS
-    [KnownType(typeof(Torch))]
-    [KnownType(typeof(CristmasStar))]
-    [KnownType(typeof(DiscoLight))]
-    [KnownType(typeof(GrandmasLamp))]
-    [KnownType(typeof(Latern))]
-    [KnownType(typeof(MagicGlass))]
-
-    //TREES
-    [KnownType(typeof(Palm))]
-    [KnownType(typeof(Fir))]
-    [KnownType(typeof(Tree1))]
-
-    //MOBS
-    [KnownType(typeof(Sheep))]
-
+{    
     public abstract class Entity
     {
         [ContentSerializerIgnore]
         public EntityPacket EntityPacket; //FOR MULTIPLAYER
-        [DataMember, ContentSerializerIgnore]
+        [ContentSerializerIgnore]
         protected int x, y;
-        [DataMember, ContentSerializerIgnore]
+        [ContentSerializerIgnore]
         public int ID = 0;       
-        [DataMember, ContentSerializerIgnore]
+        [ContentSerializerIgnore]
         public bool solid = true;
-        [DataMember]
         public int mapid = 0;
         [ContentSerializerIgnore]
         public int width=0, height=0;       

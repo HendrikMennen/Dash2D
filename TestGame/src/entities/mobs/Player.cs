@@ -26,7 +26,6 @@ namespace TestGame.src.entities
         private Texture2D sprite_face;
         private Texture2D sprite_jacket;
 
-        [DataMember]
         public ClothItem Jacket { get; set; }
 
         public Entity SelectedEntity { get; set; }
@@ -87,7 +86,6 @@ namespace TestGame.src.entities
                 //sprite = sprite_walk;
             }
             
-            chatBubbleDuration--;
             if (this != level.getClientPlayer()) Moveto();
             base.Update();
         }

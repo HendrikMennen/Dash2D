@@ -13,7 +13,6 @@ using TestGame.src.tools;
 
 namespace TestGame.src.entities.objects.furniture
 {
-    [DataContract]
     abstract class Tree : Furniture
     {
         
@@ -63,8 +62,6 @@ namespace TestGame.src.entities.objects.furniture
             base.OnClick(sender);           
         }
     }
-
-    [DataContract]
     class Palm : Tree
     {
         public Palm(int x, int y)
@@ -95,7 +92,6 @@ namespace TestGame.src.entities.objects.furniture
         
     }
 
-    [DataContract]
     class Fir : Tree
     {
         public Fir(int x, int y)
@@ -124,7 +120,6 @@ namespace TestGame.src.entities.objects.furniture
         }
     }
 
-    [DataContract]
     class Tree1 : Tree
     {
         public Tree1(int x, int y)

@@ -23,6 +23,7 @@ namespace TestGame.src.items
         int mapX = 0;
         int mapY= 0;
         Furniture furniture;
+        //public event System.EventHandler Activated;
 
         public FurnitureItem(int column, int row, string name)
         {
@@ -54,7 +55,7 @@ namespace TestGame.src.items
             {                                
                 if (drawAllowed)
                 {
-                    //Activated(this, null);
+                    FireActivated(null);
                     Furniture instance = (Furniture)Activator.CreateInstance(typeof(T));
                     instance.Position = furniture.Position;
                     instance.mapid = level.getClientPlayer().mapid;

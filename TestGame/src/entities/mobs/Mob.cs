@@ -13,36 +13,25 @@ using TestGame.src.tools;
 
 namespace TestGame.src.entities
 {
-    [DataContract]
     public abstract class Mob : Entity
     {
         
-        protected int animationSpeed = 60/5;
-        
-        protected bool walking = false;
-        
-        private int animCounter;
-               
-        protected int rows;
-        
+        protected int animationSpeed = 60/5;     
+        protected bool walking = false;       
+        private int animCounter;            
+        protected int rows;      
         protected int columns;
-
-        [ContentSerializerIgnore]
         public int direction = 1;
-
         public AnimatedMobSprite animatedSprite;
 
-        public string name = "Manfredi";
-        //CHAT BUBBLE      
-        private Texture2D chatBubble;
+        //CHAT
+        private Texture2D bubble;
+        private int bubbleduration;
+        private string message;
+        public string name = "Manfreed";
+        private SpriteFont font;
         
-        protected SpriteFont font, namefont;
-        public string Text { get; set; }
         
-        private int textlength,textheight;
-        
-        public int chatBubbleDuration = 0;
-
         public float speed = 1f;
         private int maxhealth = 100;
         public int MaxHealth
@@ -110,23 +99,40 @@ namespace TestGame.src.entities
 
         public override void LoadContent(ContentManager cm)
         {
+            bubble = cm.Load<Texture2D>("textures/ui/chat/chatBubble");
+            font = cm.Load<SpriteFont>("fonts/PixelFont");
             animatedSprite = new AnimatedMobSprite(sprite, rows, columns);
             width = animatedSprite.getWidth();
-            height = animatedSprite.getHeight();
-
-            chatBubble = cm.Load<Texture2D>("textures/ui/chat/chatBubble");          
-            font = cm.Load<SpriteFont>("fonts/SegoeUIBlack");
-            namefont = cm.Load<SpriteFont>("fonts/SegoeUIBlack");
-
-            Position = new Microsoft.Xna.Framework.Vector2(x, y);
+            height = animatedSprite.getHeight();           
+            Position = new Vector2(x, y);
         }
 
-        public void Say(string text)
+        public void Say(string message)
         {
-            this.Text = text;
-            chatBubbleDuration = 3 * 60; //3 Sekunden
-            textlength = (int)font.MeasureString(text).X;
-            textheight = (int)font.MeasureString(text).Y;
+            this.message = message;
+            bubbleduration = 60 * 5; //5 Sekunden
+        }
+
+        public void DrawChatBubble(SpriteBatch sb)
+        {
+            if (bubbleduration <= 0) return;
+            string text = message;                    
+            int segmentSize = (int)(15 * Global.UIScale);
+            int chatbubbleHeight = (int)(bubble.Height * Global.UIScale);
+            int chatbubbleWidth = (int)(font.MeasureString(text).X * Global.UIScale)-8;
+            Vector2 pos = input.GetScreenPos(new Vector2(CenterPosition.X + 7, CenterPosition.Y - 5));
+            
+            int posX = (int)pos.X;
+            int posY = (int)pos.Y - chatbubbleHeight;
+            int textposY = (int)(posY+2);
+            if (Global.UIScale == 2) textposY += 2;
+
+            sb.Draw(bubble, new Rectangle(posX, posY, segmentSize, chatbubbleHeight), new Rectangle(0, 0, 15, bubble.Height), Color.White);
+            for (int i = 0; chatbubbleWidth > (bubble.Width - 20) * i; i++)
+            {
+                sb.Draw(bubble, new Rectangle(posX + (bubble.Width - 20) * i + segmentSize, posY, (int)((bubble.Width - 15) * Global.UIScale), chatbubbleHeight), new Rectangle(15, 0, bubble.Width - 15, bubble.Height), Color.White);
+            }
+            sb.DrawString(font, text, new Vector2(posX + segmentSize-5, textposY), Color.Black, 0f, Vector2.Zero, Global.UIScale, SpriteEffects.None, 0f);
         }
 
         protected void Moveto()
@@ -189,45 +195,25 @@ namespace TestGame.src.entities
             if (offset.X > 0) direction = 4;
             if (offset.X < 0) direction = 2;           
         }
+
+        public override void Update()
+        {
+            if(bubbleduration > 0) bubbleduration--;
+            base.Update();
+        }
         public override void Draw(SpriteBatch sb)
         {
             Draw(sb, Color.White); 
         }
         public override void Draw(SpriteBatch sb, Color color)
         {
-            sb.Draw(sprite, new Rectangle(x, y, width, height), animatedSprite.getSourceRect(), color, 0f, new Vector2(), animatedSprite.flip, 0f);
+            //if (bubbleduration > 0) DrawChatBubble(sb, CenterPosition);
+            sb.Draw(sprite, new Rectangle(x, y, width, height), animatedSprite.getSourceRect(), color, 0f, new Vector2(), animatedSprite.flip, 0f);           
             base.Draw(sb, color);
-        }
-
-        public void RenderChat(SpriteBatch sb)
-        {
-            Vector2 pos = input.GetScreenPos(new Vector2(x+30, y));
-            int xa = (int)pos.X;
-            int ya = (int)pos.Y;
-            //if (Game1.online) sb.DrawString(namefont, name, new Vector2(xa - namefont.MeasureString(name).X/2 , ya), Color.Black); //TODO
-            if (chatBubbleDuration > 0)
-            {            
-                int xPos = xa;
-                int yPos = ya;
-
-                if (Game1.online) yPos -= (int)(namefont.MeasureString(name).Y);
-
-                sb.Draw(chatBubble, new Rectangle(xPos, yPos, 15, chatBubble.Height),new Rectangle(0,0,15,chatBubble.Height), Color.White);
-                for(int i = 0; font.MeasureString(Text).X > (chatBubble.Width-20)*i; i++)
-                {
-                    sb.Draw(chatBubble, new Rectangle(xPos+(chatBubble.Width-20)*i+15, yPos, chatBubble.Width-15, chatBubble.Height),new Rectangle(15,0,chatBubble.Width-15,chatBubble.Height), Color.White);
-                }                               
-                sb.DrawString(font, Text, new Vector2(xPos + 15, yPos + (int)(0.5)),Color.Black);
-            }
-            else
-            {
-                Text = "";
-            }
-        }
+        }       
     
         public void UpdateAnimation()
-        {
-           
+        {         
             animatedSprite.setDirection(direction);
            
                 animCounter++;

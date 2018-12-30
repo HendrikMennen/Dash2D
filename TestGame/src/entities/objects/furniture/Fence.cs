@@ -10,7 +10,6 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace TestGame.src.entities.objects.furniture
 {
-    [DataContract]
     public abstract class Fence : Furniture
     {
         
@@ -80,7 +79,6 @@ namespace TestGame.src.entities.objects.furniture
         }
     }
 
-    [DataContract]
     class Fence1: Fence
     {
         public Fence1(int x, int y)

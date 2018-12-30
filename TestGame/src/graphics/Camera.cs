@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestGame.src.tools;
 
 namespace TestGame.src.graphics
 {
@@ -13,7 +14,23 @@ namespace TestGame.src.graphics
         private readonly Viewport viewport;
         public Vector2 Position { get; set; }
         public float Rotation { get; set; }
-        public float Zoom { get; set; }
+        public float Zoom
+        {
+            get
+            {
+                return zoom;
+            }
+            set
+            {
+                if (value >= 1f && value <= 5)
+                {
+                    zoom = (float)Math.Round(value * 10) / 10;
+                }              
+                if (value >= 2) Global.UIScale = 2;
+                else Global.UIScale = 1;
+            }
+        }
+        private float zoom = 0;
 
         public int ViewportWidth { get; set; }
         public int ViewportHeight { get; set; }
@@ -49,11 +66,7 @@ namespace TestGame.src.graphics
 
         public void AdjustZoom(float amount)
         {
-            Zoom += amount;
-            if (Zoom < 0.2f)
-            {
-                Zoom = 0.2f;
-            }
+            Zoom += amount;          
         }
 
         public void MoveCamera(Vector2 cameraMovement, bool clampToMap = false)

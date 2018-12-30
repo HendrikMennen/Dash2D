@@ -12,12 +12,10 @@ using TestGame.src.tools;
 
 namespace TestGame.src.items
 {
-    [DataContract]
     public class ClothItem : Item
     {
         public Texture2D Sprite_walk { get; private set; }
         public Texture2D Sprite_run { get; private set; }
-        [DataMember]
         public Color Clothcolor { get; private set; }
         readonly string path;
 

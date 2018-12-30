@@ -27,46 +27,88 @@
     <collisions>0 0 198 8 0 470 512 42 0 0 217 47 202 46 11 130 209 18 303 45 506 61 6 288 0 0 4 351 202 222 12 99 0 319 85 33 122 319 220 32 379 319 133 32</collisions>
     <entities>
       <Item Type="TestGame.src.entities.objects.furniture.Sofa">
-        <Position>32 32</Position>
-        <mapid>0</mapid>
-      </Item>
-      <Item Type="TestGame.src.entities.objects.furniture.Sofa">
         <Position>128 32</Position>
         <mapid>0</mapid>
       </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.Cabinet1">
+        <Position>16 32</Position>
+        <mapid>0</mapid>
+      </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.Sofa">
+        <Position>64 32</Position>
+        <mapid>0</mapid>
+      </Item>
       <Item Type="TestGame.src.entities.objects.furniture.Plant1">
-        <Position>96 32</Position>
+        <Position>112 32</Position>
         <mapid>0</mapid>
       </Item>
       <Item Type="TestGame.src.entities.objects.furniture.DiscoLight">
-        <Position>256 240</Position>
+        <Position>448 96</Position>
         <mapid>0</mapid>
         <on>true</on>
-        <lightColor>FFE0B73C</lightColor>
+        <lightColor>FF1300EC</lightColor>
       </Item>
       <Item Type="TestGame.src.entities.objects.furniture.DiscoLight">
-        <Position>448 240</Position>
+        <Position>352 96</Position>
+        <mapid>0</mapid>
+        <on>true</on>
+        <lightColor>FFFFFF00</lightColor>
+      </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.DiscoLight">
+        <Position>256 96</Position>
+        <mapid>0</mapid>
+        <on>true</on>
+        <lightColor>FF8F3800</lightColor>
+      </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.DiscoLight">
+        <Position>256 176</Position>
+        <mapid>0</mapid>
+        <on>true</on>
+        <lightColor>FF5B5300</lightColor>
+      </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.DiscoLight">
+        <Position>352 176</Position>
+        <mapid>0</mapid>
+        <on>true</on>
+        <lightColor>FF0000FF</lightColor>
+      </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.DiscoLight">
+        <Position>448 176</Position>
+        <mapid>0</mapid>
+        <on>true</on>
+        <lightColor>FF3A6300</lightColor>
+      </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.MagicGlass">
+        <Position>96 176</Position>
+        <mapid>0</mapid>
+        <on>true</on>
+        <lightColor>FFFF00FF</lightColor>
+      </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.DiscoLight">
+        <Position>256 256</Position>
+        <mapid>0</mapid>
+        <on>true</on>
+        <lightColor>FFDFDF20</lightColor>
+      </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.DiscoLight">
+        <Position>352 256</Position>
+        <mapid>0</mapid>
+        <on>true</on>
+        <lightColor>FFD7D728</lightColor>
+      </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.DiscoLight">
+        <Position>448 256</Position>
         <mapid>0</mapid>
         <on>true</on>
         <lightColor>FF9400D3</lightColor>
       </Item>
-      <Item Type="TestGame.src.entities.objects.furniture.DiscoLight">
-        <Position>352 240</Position>
+      <Item Type="TestGame.src.entities.objects.furniture.Particelspawner">
+        <Position>32 272</Position>
         <mapid>0</mapid>
-        <on>true</on>
-        <lightColor>FF5555AA</lightColor>
       </Item>
-      <Item Type="TestGame.src.entities.objects.furniture.DiscoLight">
-        <Position>400 240</Position>
+      <Item Type="TestGame.src.entities.objects.furniture.Particelspawner">
+        <Position>160 272</Position>
         <mapid>0</mapid>
-        <on>true</on>
-        <lightColor>FFAA35A7</lightColor>
-      </Item>
-      <Item Type="TestGame.src.entities.objects.furniture.DiscoLight">
-        <Position>304 240</Position>
-        <mapid>0</mapid>
-        <on>true</on>
-        <lightColor>FFB1D800</lightColor>
       </Item>
       <Item Type="TestGame.src.entities.objects.furniture.Torch">
         <Position>0 352</Position>
@@ -82,6 +124,108 @@
       </Item>
       <Item Type="TestGame.src.entities.objects.furniture.Torch">
         <Position>416 352</Position>
+        <mapid>0</mapid>
+        <on>true</on>
+        <lightColor>FFFFFFC8</lightColor>
+      </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.Grass">
+        <Position>160 384</Position>
+        <mapid>0</mapid>
+      </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.Grass">
+        <Position>112 384</Position>
+        <mapid>0</mapid>
+      </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.Grass">
+        <Position>48 384</Position>
+        <mapid>0</mapid>
+      </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.Grass">
+        <Position>0 384</Position>
+        <mapid>0</mapid>
+      </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.Grass">
+        <Position>256 384</Position>
+        <mapid>0</mapid>
+      </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.Grass">
+        <Position>336 384</Position>
+        <mapid>0</mapid>
+      </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.Grass">
+        <Position>384 384</Position>
+        <mapid>0</mapid>
+      </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.Grass">
+        <Position>432 384</Position>
+        <mapid>0</mapid>
+      </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.Tree1">
+        <Position>304 336</Position>
+        <mapid>0</mapid>
+      </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.Grass">
+        <Position>144 400</Position>
+        <mapid>0</mapid>
+      </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.Grass">
+        <Position>80 400</Position>
+        <mapid>0</mapid>
+      </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.Grass">
+        <Position>16 400</Position>
+        <mapid>0</mapid>
+      </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.Grass">
+        <Position>304 400</Position>
+        <mapid>0</mapid>
+      </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.Grass">
+        <Position>400 400</Position>
+        <mapid>0</mapid>
+      </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.Grass">
+        <Position>464 400</Position>
+        <mapid>0</mapid>
+      </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.Tree1">
+        <Position>432 352</Position>
+        <mapid>0</mapid>
+      </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.Grass">
+        <Position>192 416</Position>
+        <mapid>0</mapid>
+      </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.Grass">
+        <Position>272 416</Position>
+        <mapid>0</mapid>
+      </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.Grass">
+        <Position>352 416</Position>
+        <mapid>0</mapid>
+      </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.Grass">
+        <Position>432 416</Position>
+        <mapid>0</mapid>
+      </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.Tree1">
+        <Position>240 368</Position>
+        <mapid>0</mapid>
+      </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.Latern">
+        <Position>480 416</Position>
+        <mapid>0</mapid>
+        <on>true</on>
+        <lightColor>FFFFFFC8</lightColor>
+      </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.Latern">
+        <Position>96 432</Position>
+        <mapid>0</mapid>
+        <on>true</on>
+        <lightColor>FFFFFFC8</lightColor>
+      </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.Torch">
+        <Position>336 448</Position>
         <mapid>0</mapid>
         <on>true</on>
         <lightColor>FFFFFFC8</lightColor>

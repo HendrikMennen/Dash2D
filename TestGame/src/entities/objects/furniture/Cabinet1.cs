@@ -9,7 +9,6 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace TestGame.src.entities.objects.furniture
 {
-    [DataContract]
     class Cabinet1 : Furniture
     {
         public Cabinet1(int x, int y)
@@ -27,13 +26,13 @@ namespace TestGame.src.entities.objects.furniture
         {
             sprite = cm.Load<Texture2D>("textures/objects/furniture");
 
-            source = new Microsoft.Xna.Framework.Rectangle(0, 4 * 16, 32, 48);
+            source = new Microsoft.Xna.Framework.Rectangle(0, 4 * 16, 32, 32);
 
             width = source.Width;
             height = source.Height;
 
-            hitbox = new Microsoft.Xna.Framework.Rectangle(1, 32, 28, 15);
-            clickbox = new Microsoft.Xna.Framework.Rectangle(1, 5, 31, 43);
+            hitbox = new Microsoft.Xna.Framework.Rectangle(3, 21, 26, 11);
+            clickbox = new Microsoft.Xna.Framework.Rectangle(1, 1, 31, 31);
             base.LoadContent(cm);
         }
     }

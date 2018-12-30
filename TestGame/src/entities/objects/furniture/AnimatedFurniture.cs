@@ -13,7 +13,6 @@ using TestGame.src.netcode;
 
 namespace TestGame.src.entities.objects.furniture
 {
-    [DataContract]
     public class AnimatedFurniture : Furniture
     {
         [ContentSerializerIgnore]

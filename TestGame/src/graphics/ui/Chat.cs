@@ -65,9 +65,9 @@ namespace TestGame.src.graphics.ui
         
         public void loadContent(ContentManager cm)
         {
-            font = cm.Load<SpriteFont>("fonts/dashFont");
+            font = cm.Load<SpriteFont>("fonts/DashFont");
             bubble = cm.Load<Texture2D>("textures/ui/chat/chatBubble");
-            chatWindow = cm.Load<Texture2D>("textures/ui/misc/Background");          
+            chatWindow = cm.Load<Texture2D>("textures/ui/misc/Background");
         }    
 
         public void changeResolution()
@@ -121,20 +121,20 @@ namespace TestGame.src.graphics.ui
                     {
                         if (Game1.online)
                         {
-                            netcode.NetCode.Chat(text);                           
+                            netcode.NetCode.Chat(text);
                         }
                         else
                         {
+                            text = Global.CheckChars(Global.PixelFont, text);
                             level.getClientPlayer().Say(text);
-                            cmd.command("!chat " + level.getClientPlayer().name + " " + text);
+                            WriteLine(new ChatMessage("You: ", text));
                         }
                     }
                     text = "";
                 }
             }
         }
-
-        
+       
 
         public void render(SpriteBatch g)
         {
@@ -209,6 +209,8 @@ namespace TestGame.src.graphics.ui
             return true;
         }
 
+       
+
         public void Draw(SpriteBatch sb, SpriteFont font, Vector2 pos, float maxWidth)
         {
             charHeight = font.MeasureString("I").Y;
@@ -240,13 +242,16 @@ namespace TestGame.src.graphics.ui
                     {
                         words[i] = words[i].Substring(maxcharsperline - charcounter);
                         charcounter = maxcharsperline;
-                    }         
+                    }
 
-                    sb.DrawString(font, message.Substring(totalcharcounter, charcounter-1), pos, messagecolor);
-                    pos.Y += charHeight;
-                    totalcharcounter += (charcounter);
-                    charcounter = 0;
-                    i--;
+                    if (charcounter > 0)
+                    {
+                        sb.DrawString(font, message.Substring(totalcharcounter, charcounter - 1), pos, messagecolor);
+                        pos.Y += charHeight;
+                        totalcharcounter += (charcounter);
+                        charcounter = 0;
+                        i--;
+                    }
                 }
             }
             sb.DrawString(font, message.Substring(totalcharcounter, message.Length - totalcharcounter), pos, messagecolor);

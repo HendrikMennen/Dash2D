@@ -208,6 +208,7 @@ namespace TestGame.src.netcode
                                         {
                                             if(e.ID == id)
                                             {
+                                                message = Global.CheckChars(Global.PixelFont, message);
                                                 Global.chat.WriteLine(new ChatMessage(e.name, Color.Blue, message, Color.White));
                                                 e.Say(message);
                                                 break;

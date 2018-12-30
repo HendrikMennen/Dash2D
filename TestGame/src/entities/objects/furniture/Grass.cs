@@ -9,7 +9,6 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace TestGame.src.entities.objects.furniture
 {
-    [DataContract]
     class Grass : Furniture
     {
         public Grass(int x, int y)

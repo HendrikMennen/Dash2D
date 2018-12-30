@@ -23,6 +23,7 @@ namespace TestGame.src.tools
         public static SoundEffect clicksound { get; private set; }
         public static SpriteFont buttonfont { get; private set; }
         public static SpriteFont dashfont { get; private set; }
+        public static SpriteFont PixelFont { get; private set; }
         public static Texture2D buttontexture { get; private set; }
 
         public static bool showHitboxes = false;
@@ -33,6 +34,7 @@ namespace TestGame.src.tools
         public static Chat chat { get; private set; }       
         public static Commands cmd { get; private set; }
         public static Random rdm { get; set; }
+        public static float UIScale { get; set; }
 
         
 
@@ -41,7 +43,10 @@ namespace TestGame.src.tools
             clicksound = cm.Load<SoundEffect>("sound/effects/stereo/oldlamp_switch");
             buttonfont = cm.Load<SpriteFont>("fonts/SegoeUIBlack");
             dashfont = cm.Load<SpriteFont>("fonts/DashFont");
+            PixelFont = cm.Load<SpriteFont>("fonts/PixelFont");
             buttontexture = cm.Load<Texture2D>("textures/ui/menu/Button");
+
+            UIScale = 1f;
         }
 
         public static void Init(Camera pCamera, Time pTime, Sound pSound, Chat pChat, Commands pCmd, Random pRdm)
@@ -79,6 +84,19 @@ namespace TestGame.src.tools
                 if (tcolor[i] == color) tcolor[i] = replaceColor;
             }
             texture.SetData<Color>(tcolor);
+        }
+
+        public static string CheckChars(SpriteFont font,string text)
+        {
+            string newstring = "";
+            for(int i = 0; i < text.Length; i++)
+            {
+                if (font.Characters.Contains(text[i]))
+                {
+                    newstring += text[i];
+                }
+            }
+            return newstring;
         }
     }
 }

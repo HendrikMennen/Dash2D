@@ -364,19 +364,19 @@ namespace TestGame
                 case GameState.Pause:
                     break;
             }
-
+          
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp); //UI
 
             foreach (var mob in (level.mobs))
             {
-                if (mob.mapid == level.getClientPlayer().mapid) mob.RenderChat(spriteBatch); //Chatbubble + Name
+                mob.DrawChatBubble(spriteBatch);
             }
 
             spriteBatch.DrawString(font, "X: " + level.getClientPlayer().Position.X.ToString(), new Vector2(xStart, 10), Color.Black);
             spriteBatch.DrawString(font, "Y: " + level.getClientPlayer().Position.Y.ToString(), new Vector2(xStart + 120, 10), Color.Black);
             spriteBatch.DrawString(font, "Map: " + level.currentMapName, new Vector2(xStart, 40), Color.Black);
             spriteBatch.DrawString(font, "FPS: " + Math.Round(frameCounter.CurrentFramesPerSecond), new Vector2(xStart, 70), Color.Black);
-            spriteBatch.DrawString(font, "RenderedTiles: " + Level.RenderedTiles, new Vector2(xStart, 100), Color.Black);
+            spriteBatch.DrawString(font, "RenderedTiles: " + Level.RenderedTiles + " at Zoom: " + Math.Round(Global.camera.Zoom*10)/10, new Vector2(xStart, 100), Color.Black);
             if (Game1.online)
             {
                 spriteBatch.DrawString(font, "Receiving: " + Math.Round((float)NetCode.RecievingBytesPerSecond/100f)/10 + "kb/s", new Vector2(xStart, 130), Color.Black);

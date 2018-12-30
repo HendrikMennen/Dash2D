@@ -60,6 +60,13 @@
 /processorParam:TextureFormat=Compressed
 /build:fonts/NameFont.spritefont
 
+#begin fonts/PixelFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=NoChange
+/build:fonts/PixelFont.spritefont
+
 #begin fonts\SegoeUIBlack.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor

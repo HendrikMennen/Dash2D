@@ -14,7 +14,6 @@ using System.Runtime.Serialization;
 
 namespace TestGame.src.entities.objects.furniture
 {
-    [DataContract]
     class TV : Furniture
     {     
         //Texture2D screenTexture;

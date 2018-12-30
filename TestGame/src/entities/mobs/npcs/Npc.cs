@@ -5,7 +5,6 @@ using System.Runtime.Serialization;
 
 namespace TestGame.src.entities
 {
-    [DataContract]
     public class Npc : Mob
          
     {

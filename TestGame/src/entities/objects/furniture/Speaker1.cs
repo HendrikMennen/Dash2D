@@ -16,7 +16,6 @@ using System.Runtime.Serialization;
 
 namespace TestGame.src.entities.objects.furniture
 {
-    [DataContract]
     class Speaker1 : Furniture
     {
         private Song music;

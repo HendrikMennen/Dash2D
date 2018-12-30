@@ -67,6 +67,7 @@ namespace TestGame.src.tools
 
 
                 if (param[0] == "!map")  level.ChangeMap(Int32.Parse(param[1]));
+                if (param[0] == "!uiscale") Global.UIScale = float.Parse(param[1]);
                 if (param[0] == "!give") inv.AddItem(Int32.Parse(param[1]), Int32.Parse(param[2]));
                 if (param[0] == "!sethp") level.getClientPlayer().Health = Int32.Parse(param[1]);
                 if (param[0] == "!setname") level.getClientPlayer().name = param[1];

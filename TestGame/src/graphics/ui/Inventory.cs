@@ -60,10 +60,10 @@ namespace TestGame.src.graphics.ui
             }     
             private set
             {                
-                //if (currentItem != null) currentItem.Activated -= new EventHandler(OnActivate);
+                if (currentItem != null) currentItem.Activated -= new EventHandler(OnActivate); //EVENT LÖSEN
                 level.getClientPlayer().currentItem = value;
                 currentItem = value;
-                //currentItem.Activated += new EventHandler(OnActivate);
+                currentItem.Activated += new EventHandler(OnActivate); //NEUES EVENT VERKNÜPFEN
             }       
         }
 
@@ -90,16 +90,16 @@ namespace TestGame.src.graphics.ui
             #if true
 
             AddItem(StaticItems.particlespawner, 10);
-            AddItem(StaticItems.sofa, 2);
-            //addItem(Item.tv, 1);
-            //addItem(StaticItems.speaker, 2);
+            AddItem(StaticItems.sofa, 10);
+            AddItem(StaticItems.tv, 10);
+            AddItem(StaticItems.speaker, 4);
             AddItem(StaticItems.discolight, 20);
             AddItem(StaticItems.lamp1, 10);
             AddItem(StaticItems.torch, 100);
-            //addItem(StaticItems.magicglass, 10);
+            AddItem(StaticItems.magicglass, 10);
             AddItem(StaticItems.cabinet1, 5);
             AddItem(StaticItems.plant1, 10);
-            //addItem(Item.fence, 50);
+            AddItem(StaticItems.fence, 50);
             AddItem(StaticItems.redjacket, 1);
             AddItem(StaticItems.yellowjacket, 1);
             AddItem(StaticItems.blackjacket, 1);          
@@ -112,10 +112,10 @@ namespace TestGame.src.graphics.ui
             AddItem(StaticItems.sheep, 30);
             //addItem(Item.joseph, 10);
 
-            //addItem(Item.grass, 10);
-            //addItem(Item.tree, 10);
-            //addItem(Item.palm, 5);
-            //addItem(StaticItems.fir, 100);
+            AddItem(StaticItems.grass, 10);
+            AddItem(StaticItems.tree, 10);
+            AddItem(StaticItems.palm, 5);
+            AddItem(StaticItems.fir, 100);
 
             //addItem(Item.cristmasStar, 3);
 

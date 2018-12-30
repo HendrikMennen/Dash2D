@@ -10,7 +10,6 @@ using System.Runtime.Serialization;
 
 namespace TestGame.src.entities.objects.furniture
 {
-    [DataContract]
     class Plant1 : Furniture
     {  
 

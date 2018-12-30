@@ -15,7 +15,6 @@ using System.Runtime.Serialization;
 
 namespace TestGame.src.entities.objects.furniture
 {
-    [DataContract]
     abstract class ChessFigure : Furniture
     {
         
