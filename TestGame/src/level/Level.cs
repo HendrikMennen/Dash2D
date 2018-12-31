@@ -204,12 +204,12 @@ namespace TestGame.src.level
                         }
 
                         int gid = layer[x + y * CurrentMap.MapWidth];
-                        Tileset tileset = GetTileset(gid);
+                        Tileset tileset = CurrentMap.GetTileset(gid);
                         gid -= tileset.startvalue;
                         if (gid <= 0) continue;
                                                
                         Texture2D texture = tileset.texture;
-                        sb.Draw(texture, new Rectangle(x*Game1.SpriteWidth, y* Game1.SpriteHeight, Game1.SpriteWidth, Game1.SpriteHeight),getSourceRectangle(gid-1, tileset), Color.White);
+                        sb.Draw(texture, new Rectangle(x*Game1.SpriteWidth, y* Game1.SpriteHeight, Game1.SpriteWidth, Game1.SpriteHeight), CurrentMap.getSourceRectangle(gid, tileset), Color.White);
                     }
                 }
             }
@@ -220,7 +220,7 @@ namespace TestGame.src.level
             if(Game1.playerlight) LightRenderer.Draw(sb, getClientPlayer().CenterPosition, 1f, Color.White);
             foreach (var light in lamps) if (light.mapid == mapID && light.On) LightRenderer.Draw(sb, light.CenterPosition, light.scale, light.lightColor);
             foreach (var light in sheeps) if (light.mapid == mapID) LightRenderer.Draw(sb, light.CenterPosition, 1f, light.sheepcolor);
-            foreach (var light in particles) if (light.mapid == mapID && light.Light) LightRenderer.Draw(sb, light.CenterPosition, 0.1f, light.lightColor);
+            foreach (var light in particles) if (light.mapid == mapID && light.Light) LightRenderer.Draw(sb, light.CenterPosition, 0.1f, light.LightColor);
         }
         
         public void update()
@@ -231,7 +231,7 @@ namespace TestGame.src.level
             }
             for (int i = 0; i < particles.Count; i++)
             {
-                if(particles[i].duration <= 0)
+                if(particles[i].Duration <= 0)
                 {
                     entities.Remove(particles[i]);
                     particles.Remove(particles[i]);
@@ -246,38 +246,14 @@ namespace TestGame.src.level
                 }
             }
          
-        }
-
-        public Rectangle getSourceRectangle(int id, Tileset tileset)
-        {
-
-            int column = id % tileset.width;
-
-            bool done = false;
-            int c = 0;
-            while (!done)
-            {
-                c++;
-                if (id < tileset.width * c) done = true;
-            }
-            int row = c - 1;
-
-            return new Rectangle(column * Game1.SpriteWidth, row * Game1.SpriteHeight, Game1.SpriteWidth, Game1.SpriteHeight);
-        }
+        }     
 
         public Player getClientPlayer()
         {
             return players[0];
         }
 
-        public Tileset GetTileset(int gid)
-        {
-            foreach (var tileset in CurrentMap.tilesets)
-            {
-                if (gid > tileset.startvalue && gid < tileset.startvalue+tileset.tileCount) return tileset;
-            }
-            return CurrentMap.tilesets[0];
-        }
+        
 
         public void clearEntities()
         {

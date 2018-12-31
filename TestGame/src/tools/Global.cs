@@ -98,5 +98,10 @@ namespace TestGame.src.tools
             }
             return newstring;
         }
+
+        public static Rectangle addVector2(Rectangle rec, Vector2 pos)
+        {
+            return new Microsoft.Xna.Framework.Rectangle((int)pos.X + rec.X, (int)pos.Y + rec.Y, rec.Width, rec.Height);
+        }
     }
 }

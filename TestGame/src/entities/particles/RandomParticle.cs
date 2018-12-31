@@ -19,7 +19,7 @@ namespace TestGame.src.entities.particles
             this.y = y;
             Position = new Microsoft.Xna.Framework.Vector2(x, y);
 
-            duration = 60;
+            Duration = 120;
             spread = 0.1f;
             this.size = size;
             rdmcolor = true;

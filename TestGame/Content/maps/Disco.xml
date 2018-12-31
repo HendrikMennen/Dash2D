@@ -46,37 +46,37 @@
         <Position>448 96</Position>
         <mapid>0</mapid>
         <on>true</on>
-        <lightColor>FF1300EC</lightColor>
+        <lightColor>FF3800EF</lightColor>
       </Item>
       <Item Type="TestGame.src.entities.objects.furniture.DiscoLight">
         <Position>352 96</Position>
         <mapid>0</mapid>
         <on>true</on>
-        <lightColor>FFFFFF00</lightColor>
+        <lightColor>FF9DCF00</lightColor>
       </Item>
       <Item Type="TestGame.src.entities.objects.furniture.DiscoLight">
         <Position>256 96</Position>
         <mapid>0</mapid>
         <on>true</on>
-        <lightColor>FF8F3800</lightColor>
+        <lightColor>FF9D9D62</lightColor>
       </Item>
       <Item Type="TestGame.src.entities.objects.furniture.DiscoLight">
         <Position>256 176</Position>
         <mapid>0</mapid>
         <on>true</on>
-        <lightColor>FF5B5300</lightColor>
+        <lightColor>FF004F62</lightColor>
       </Item>
       <Item Type="TestGame.src.entities.objects.furniture.DiscoLight">
         <Position>352 176</Position>
         <mapid>0</mapid>
         <on>true</on>
-        <lightColor>FF0000FF</lightColor>
+        <lightColor>FF62009D</lightColor>
       </Item>
       <Item Type="TestGame.src.entities.objects.furniture.DiscoLight">
         <Position>448 176</Position>
         <mapid>0</mapid>
         <on>true</on>
-        <lightColor>FF3A6300</lightColor>
+        <lightColor>FF3800EF</lightColor>
       </Item>
       <Item Type="TestGame.src.entities.objects.furniture.MagicGlass">
         <Position>96 176</Position>
@@ -88,19 +88,19 @@
         <Position>256 256</Position>
         <mapid>0</mapid>
         <on>true</on>
-        <lightColor>FFDFDF20</lightColor>
+        <lightColor>FF384F51</lightColor>
       </Item>
       <Item Type="TestGame.src.entities.objects.furniture.DiscoLight">
         <Position>352 256</Position>
         <mapid>0</mapid>
         <on>true</on>
-        <lightColor>FFD7D728</lightColor>
+        <lightColor>FF624F00</lightColor>
       </Item>
       <Item Type="TestGame.src.entities.objects.furniture.DiscoLight">
         <Position>448 256</Position>
         <mapid>0</mapid>
         <on>true</on>
-        <lightColor>FF9400D3</lightColor>
+        <lightColor>FF5C00E3</lightColor>
       </Item>
       <Item Type="TestGame.src.entities.objects.furniture.Particelspawner">
         <Position>32 272</Position>
@@ -229,6 +229,10 @@
         <mapid>0</mapid>
         <on>true</on>
         <lightColor>FFFFFFC8</lightColor>
+      </Item>
+      <Item Type="TestGame.src.entities.objects.furniture.Beachchair">
+        <Position>0 432</Position>
+        <mapid>0</mapid>
       </Item>
     </entities>
     <teleporters>

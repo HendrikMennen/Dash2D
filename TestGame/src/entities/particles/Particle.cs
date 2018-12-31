@@ -13,14 +13,14 @@ namespace TestGame.src.entities.particles
     public abstract class Particle : Entity
     {
         
-        protected double xx, yy, zz, xa, ya, za;
+        protected double xx, yy, zz = 20, xa, ya, za;
         protected bool rdmcolor = false;
         protected int size = 2;
         protected float spread = 0.1f;       
-        public Color lightColor { get; protected set; } = Color.White;
-        public Color particlecolor { get; protected set; }
+        public Color LightColor { get; protected set; } = Color.White;
+        public Color Particlecolor { get; protected set; }
         public bool Light { get; protected set; } = false;
-        public double duration { get; protected set; }  = 60;
+        public double Duration { get; protected set; }  = 60;
              
         public override void LoadContent(ContentManager cm)
         {
@@ -31,14 +31,14 @@ namespace TestGame.src.entities.particles
             xx = x;
             yy = y;
 
-            if (Global.rdm != null) this.duration = Global.rdm.Next(60, 120);
+            if (Global.rdm != null) this.Duration = Global.rdm.Next((int)(Duration/2), (int)Duration);
             if (Global.rdm != null) xa = Global.rdm.Next(-10, 10) * spread;
             if (Global.rdm != null) ya = Global.rdm.Next(-10, 10) * spread-0.02;
-            if (Global.rdm != null) this.zz = Global.rdm.Next(10, 20);
+            if (Global.rdm != null) this.zz = Global.rdm.Next((int)(zz/2), (int)zz);
             if (Global.rdm != null && rdmcolor)
             {
-                particlecolor = new Color((int)Global.rdm.Next(0, 2) * 255, (int)Global.rdm.Next(0, 2) * 255, (int)Global.rdm.Next(0, 2) * 255);
-                lightColor = particlecolor;
+                Particlecolor = new Color((int)Global.rdm.Next(0, 2) * 255, (int)Global.rdm.Next(0, 2) * 255, (int)Global.rdm.Next(0, 2) * 255);
+                LightColor = Particlecolor;
             }
             solid = false;
         }
@@ -46,13 +46,13 @@ namespace TestGame.src.entities.particles
         public override void Draw(SpriteBatch sb)
         {
             base.Draw(sb);
-            sb.Draw(sprite, new Rectangle(x - width / 2, y - height / 2, size, size), particlecolor);
+            sb.Draw(sprite, new Rectangle(x - width / 2, y - height / 2, size, size), Particlecolor);
         }
 
         public override void Update()
         {
             base.Update();
-            if (duration > 0) duration--;
+            if (Duration > 0) Duration--;
             za -= 0.1;
 
             if (zz < 0)

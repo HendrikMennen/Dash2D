@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +34,55 @@ namespace TestGame.src.level
         }
         private Map() //NEEDED FOR SERIALISATION
         {         
+        }
+
+        public int getTile(int layer, Vector2 Position)
+        {
+            int x = (int)(Position.X / TileWidth);
+            int y = (int)(Position.Y / TileHeight);
+            if (layer >= 0 && layer < layers.Count)
+            {
+                if (x >= 0 && x < MapWidth && y >= 0 && y < MapHeight)
+                {
+                    return layers[layer][x + y * MapWidth];                  
+                }
+            }
+            return 0;
+        }
+
+        public Tileset GetTileset(int gid)
+        {
+            foreach (var tileset in tilesets)
+            {
+                if (gid > tileset.startvalue && gid < tileset.startvalue + tileset.tileCount) return tileset;
+            }
+            return tilesets[0];
+        }
+
+        public Rectangle getSourceRectangle(int id, Tileset tileset)
+        {
+
+            int column = id % tileset.width;
+
+            bool done = false;
+            int c = 0;
+            while (!done)
+            {
+                c++;
+                if (id < tileset.width * c) done = true;
+            }
+            int row = c - 1;
+
+            return new Rectangle((column-1) * Game1.SpriteWidth, row * Game1.SpriteHeight, Game1.SpriteWidth, Game1.SpriteHeight);
+        }
+
+        public Color[] getTileTex(int tileid)
+        {            
+            Tileset ts = GetTileset(tileid);
+            Rectangle sr = getSourceRectangle(tileid, ts);
+            Color[] cc = new Color[TileWidth * TileHeight];
+            ts.texture.GetData(0, sr, cc, 0, TileWidth * TileHeight);
+            return cc;
         }
     }
 

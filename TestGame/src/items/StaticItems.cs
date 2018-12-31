@@ -38,7 +38,7 @@ namespace TestGame.src.items
         public static Item palm = new FurnitureItem<Palm>(2, 0, "Palm");
         public static Item fir = new FurnitureItem<Fir>(2, 0, "Fir");
 
-
+        public static Item water = new FurnitureItem<Water>(5, 0, "water");
         public static Item grass = new FurnitureItem<Grass>(5, 0, "Grass");
         public static Item torch = new FurnitureItem<Torch>(0, 1, "Torch");
         public static Item magicglass = new FurnitureItem<MagicGlass>(4, 1, "Magic Glass");

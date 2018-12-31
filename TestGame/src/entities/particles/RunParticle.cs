@@ -7,26 +7,15 @@ using System.Threading.Tasks;
 
 namespace TestGame.src.entities.particles
 {
-    class BloodParticle : Particle
+    class RunParticle : Particle
     {
-        public BloodParticle(int x, int y)
+        public RunParticle(int x, int y, Color color)
         {
             this.x = x;
             this.y = y;
 
-            Duration = 60;
-            Particlecolor = Color.Red;
-            spread = 0.05f;
-            size = 2;
-            rdmcolor = false;
-        }
-
-        public BloodParticle(int x, int y, Color color)
-        {
-            this.x = x;
-            this.y = y;
-
-            Duration = 60;
+            Duration = 40;
+            zz = 10;
             Particlecolor = color;
             spread = 0.05f;
             size = 2;

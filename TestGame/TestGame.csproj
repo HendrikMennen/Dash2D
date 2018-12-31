@@ -97,6 +97,7 @@
     <Compile Include="src\entities\objects\furniture\Particelspawner.cs" />
     <Compile Include="src\entities\objects\furniture\Water.cs" />
     <Compile Include="src\entities\particles\RandomParticle.cs" />
+    <Compile Include="src\entities\particles\RunParticle.cs" />
     <Compile Include="src\entities\projectiles\Projectile.cs" />
     <Compile Include="src\graphics\ui\Healthbar.cs" />
     <Compile Include="src\items\ClothItem.cs" />

@@ -8,6 +8,7 @@ using System.Runtime.Serialization;
 using TestGame.src.animations;
 using TestGame.src.entities.particles;
 using TestGame.src.graphics;
+using TestGame.src.level;
 using TestGame.src.netcode;
 using TestGame.src.tools;
 
@@ -23,6 +24,8 @@ namespace TestGame.src.entities
         protected int columns;
         public int direction = 1;
         public AnimatedMobSprite animatedSprite;
+        private int particles = 2;
+        private int particlecounter = 10;
 
         //CHAT
         private Texture2D bubble;
@@ -187,6 +190,23 @@ namespace TestGame.src.entities
             else
             {
                 Position += offset;
+                if(speed >= 2)
+                {
+                    particlecounter++;
+                    if(particlecounter >= particles)
+                    {
+                        int id = level.CurrentMap.getTile(0, CenterPosition + new Vector2(0, height / 2 - 5));
+                        Color[] cc = level.CurrentMap.getTileTex(id);
+                        Color color = new Color(cc[0].R / 2, cc[0].G / 2, cc[0].B / 2);
+                        particlecounter = 0;
+                        RunParticle p = new RunParticle((int)CenterPosition.X, y + height-5, color)
+                        {
+                            mapid = mapid
+                        };
+                        level.AddEntity(p);                       
+                    }
+                    
+                }
                 if (level.mapID == mapid) UpdateAnimation();
             }
 
@@ -198,7 +218,7 @@ namespace TestGame.src.entities
 
         public override void Update()
         {
-            if(bubbleduration > 0) bubbleduration--;
+            if(bubbleduration > 0) bubbleduration--;           
             base.Update();
         }
         public override void Draw(SpriteBatch sb)

@@ -87,8 +87,9 @@ namespace TestGame.src.graphics.ui
             invWidth = invBar.Width;
             invHeight = invBar.Height;
             UpdateResolution();
-            #if true
+#if true
 
+            //AddItem(StaticItems.water, 10);
             AddItem(StaticItems.particlespawner, 10);
             AddItem(StaticItems.sofa, 10);
             AddItem(StaticItems.tv, 10);
@@ -104,6 +105,7 @@ namespace TestGame.src.graphics.ui
             AddItem(StaticItems.yellowjacket, 1);
             AddItem(StaticItems.blackjacket, 1);          
             AddItem(StaticItems.whitejacket, 1);
+            AddItem(StaticItems.beachchair, 3);
             //addItem(Item.book1, 1);
             AddItem(StaticItems.beer, 2);
             //addItem(Item.disc_GhostBusters, 1);

@@ -245,8 +245,8 @@ namespace TestGame.src.level
                             endID = ((int)tilesetPos.X / level.CurrentMap.TileWidth) + ((int)tilesetPos.Y - TileSelectorField.Y) / level.CurrentMap.TileHeight * (currentTileset.width);
 
 
-                            Rectangle endid = new Rectangle(level.getSourceRectangle(endID, currentTileset).X / level.CurrentMap.TileWidth, level.getSourceRectangle(endID, currentTileset).Y / level.CurrentMap.TileHeight, level.CurrentMap.TileHeight, level.CurrentMap.TileHeight);
-                            Rectangle startid = new Rectangle(level.getSourceRectangle(startID, currentTileset).X / level.CurrentMap.TileWidth, level.getSourceRectangle(startID, currentTileset).Y / level.CurrentMap.TileHeight, level.CurrentMap.TileHeight, level.CurrentMap.TileHeight);
+                            Rectangle endid = new Rectangle(level.CurrentMap.getSourceRectangle(endID, currentTileset).X / level.CurrentMap.TileWidth, level.CurrentMap.getSourceRectangle(endID, currentTileset).Y / level.CurrentMap.TileHeight, level.CurrentMap.TileHeight, level.CurrentMap.TileHeight);
+                            Rectangle startid = new Rectangle(level.CurrentMap.getSourceRectangle(startID, currentTileset).X / level.CurrentMap.TileWidth, level.CurrentMap.getSourceRectangle(startID, currentTileset).Y / level.CurrentMap.TileHeight, level.CurrentMap.TileHeight, level.CurrentMap.TileHeight);
                             if (startID > endID || startid.X > endid.X || startid.Y > endid.Y) return;
                             currentItemIDs = new int[endid.X - startid.X + 1, endid.Y - startid.Y + 1];
                             for (int y = startid.Y; y <= endid.Y; y++)
@@ -512,7 +512,7 @@ namespace TestGame.src.level
 
                 foreach(var id in currentItemIDs)
                 {
-                    Rectangle sourceRectangle = level.getSourceRectangle(id - currentTileset.startvalue - 1, currentTileset);
+                    Rectangle sourceRectangle = level.CurrentMap.getSourceRectangle(id - currentTileset.startvalue - 1, currentTileset);
                     sb.Draw(SelectedTileTexture, new Rectangle(TileSelectorField.X + sourceRectangle.X, TileSelectorField.Y + sourceRectangle.Y, level.CurrentMap.TileWidth, level.CurrentMap.TileHeight), Color.White);
                 }                           
         }

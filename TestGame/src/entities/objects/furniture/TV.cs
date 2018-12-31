@@ -32,6 +32,7 @@ namespace TestGame.src.entities.objects.furniture
          
         public override void LoadContent(ContentManager cm)
         {
+            sprite = cm.Load<Texture2D>("textures/objects/furniture");
             source = new Microsoft.Xna.Framework.Rectangle(16, 0, 48, 32);
 
             width = source.Width;
