@@ -91,6 +91,7 @@ namespace TestGame.src.graphics.ui
 
             //AddItem(StaticItems.water, 10);
             AddItem(StaticItems.particlespawner, 10);
+            AddItem(StaticItems.window1, 5);
             AddItem(StaticItems.sofa, 10);
             AddItem(StaticItems.tv, 10);
             AddItem(StaticItems.speaker, 4);

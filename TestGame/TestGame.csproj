@@ -89,6 +89,7 @@
     <Compile Include="src\entities\objects\furniture\chess\ChessRunner.cs" />
     <Compile Include="src\entities\objects\furniture\chess\ChessTower.cs" />
     <Compile Include="src\entities\objects\furniture\Sofa.cs" />
+    <Compile Include="src\entities\objects\furniture\Window.cs" />
     <Compile Include="src\entities\particles\BloodParticle.cs" />
     <Compile Include="src\entities\particles\Particle.cs" />
     <Compile Include="src\entities\objects\furniture\AnimatedFurniture.cs" />

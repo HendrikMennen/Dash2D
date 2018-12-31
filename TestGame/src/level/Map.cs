@@ -73,13 +73,13 @@ namespace TestGame.src.level
             }
             int row = c - 1;
 
-            return new Rectangle((column-1) * Game1.SpriteWidth, row * Game1.SpriteHeight, Game1.SpriteWidth, Game1.SpriteHeight);
+            return new Rectangle((column - 1) * Game1.SpriteWidth, row * Game1.SpriteHeight, Game1.SpriteWidth, Game1.SpriteHeight);
         }
 
         public Color[] getTileTex(int tileid)
         {            
             Tileset ts = GetTileset(tileid);
-            Rectangle sr = getSourceRectangle(tileid, ts);
+            Rectangle sr = getSourceRectangle(tileid - ts.startvalue, ts);
             Color[] cc = new Color[TileWidth * TileHeight];
             ts.texture.GetData(0, sr, cc, 0, TileWidth * TileHeight);
             return cc;

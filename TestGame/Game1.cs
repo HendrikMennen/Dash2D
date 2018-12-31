@@ -377,10 +377,11 @@ namespace TestGame
             spriteBatch.DrawString(font, "Map: " + level.currentMapName, new Vector2(xStart, 40), Color.Black);
             spriteBatch.DrawString(font, "FPS: " + Math.Round(frameCounter.CurrentFramesPerSecond), new Vector2(xStart, 70), Color.Black);
             spriteBatch.DrawString(font, "RenderedTiles: " + Level.RenderedTiles + " at Zoom: " + Math.Round(Global.camera.Zoom*10)/10, new Vector2(xStart, 100), Color.Black);
+            spriteBatch.DrawString(font, "TileID: " + level.CurrentMap.getTile(0,level.getClientPlayer().CenterPosition + new Vector2(0, level.getClientPlayer().height/2)) , new Vector2(xStart, 130), Color.Black);
             if (Game1.online)
             {
-                spriteBatch.DrawString(font, "Receiving: " + Math.Round((float)NetCode.RecievingBytesPerSecond/100f)/10 + "kb/s", new Vector2(xStart, 130), Color.Black);
-                spriteBatch.DrawString(font, "Sending: " + Math.Round((float)NetCode.SendingBytesPerSecond/100f)/10 + "kb/s", new Vector2(xStart, 160), Color.Black);
+                spriteBatch.DrawString(font, "Receiving: " + Math.Round((float)NetCode.RecievingBytesPerSecond/100f)/10 + "kb/s", new Vector2(xStart, 160), Color.Black);
+                spriteBatch.DrawString(font, "Sending: " + Math.Round((float)NetCode.SendingBytesPerSecond/100f)/10 + "kb/s", new Vector2(xStart, 190), Color.Black);
             }
 
             chat.render(spriteBatch);

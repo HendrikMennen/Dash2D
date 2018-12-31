@@ -33,8 +33,16 @@ namespace TestGame.src.entities
         private string message;
         public string name = "Manfreed";
         private SpriteFont font;
-        
-        
+
+        //sound
+        private SoundEffect stepwood1;
+        private SoundEffect stepwood2;
+        private SoundEffect stepdirt1;
+        private SoundEffect stepstone1;
+        private SoundEffect stepsound1;
+        private SoundEffect stepsound2;
+
+
         public float speed = 1f;
         private int maxhealth = 100;
         public int MaxHealth
@@ -104,6 +112,12 @@ namespace TestGame.src.entities
         {
             bubble = cm.Load<Texture2D>("textures/ui/chat/chatBubble");
             font = cm.Load<SpriteFont>("fonts/PixelFont");
+            stepwood1 = cm.Load<SoundEffect>("sound/effects/stereo/stepwood_1");
+            stepwood2 = cm.Load<SoundEffect>("sound/effects/stereo/stepwood_2");
+            stepdirt1 = cm.Load<SoundEffect>("sound/effects/stereo/stepdirt_1");
+            stepstone1 = cm.Load<SoundEffect>("sound/effects/stereo/stepstone_1");
+            stepsound1 = stepwood1;
+            stepsound2 = stepwood2;
             animatedSprite = new AnimatedMobSprite(sprite, rows, columns);
             width = animatedSprite.getWidth();
             height = animatedSprite.getHeight();           
@@ -238,9 +252,29 @@ namespace TestGame.src.entities
            
                 animCounter++;
                 if (animCounter >= animationSpeed / speed)
-                {                
-                //if (animatedSprite.column == 0 || animatedSprite.column == 2) Global.sound.Play(stepstone, 0.1f);
- 
+                {
+                if ((animatedSprite.column % 2 == 0 && speed <= 1) || (animatedSprite.column % 3 == 0 && speed >= 2))
+                {
+                    if (level.CurrentMap.getTile(0,CenterPosition + new Vector2(0, height / 2)) == 26)
+                    {
+                        stepsound1 = stepwood1;
+                        stepsound2 = stepwood2;
+                    }
+                    else if(level.CurrentMap.getTile(0, CenterPosition + new Vector2(0, height / 2)) == 2)
+                    {
+                        stepsound1 = stepstone1;
+                        stepsound2 = stepstone1;
+                    }
+                    else
+                    {
+                        stepsound1 = stepdirt1;
+                        stepsound2 = stepdirt1;
+                    }
+                    if(animatedSprite.column % 3 == 0) Global.sound.Play(stepsound1, 0.01f);
+                    else Global.sound.Play(stepsound2, 0.01f);
+                }
+                //else Global.sound.Play(stepwood2, 0.01f);
+
                 animatedSprite.nextFrame();
                     animCounter = 0;
                 }                    

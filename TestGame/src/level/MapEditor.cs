@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using TestGame.src.entities.objects.furniture;
 using TestGame.src.graphics;
 using TestGame.src.graphics.ui.menu;
@@ -234,7 +235,7 @@ namespace TestGame.src.level
                     {
                         if (!Drag)
                         {
-                            startID = ((int)tilesetPos.X / level.CurrentMap.TileWidth) + ((int)tilesetPos.Y - TileSelectorField.Y) / level.CurrentMap.TileHeight * (currentTileset.width);
+                            startID = ((int)tilesetPos.X / level.CurrentMap.TileWidth) + ((int)tilesetPos.Y - TileSelectorField.Y) / level.CurrentMap.TileHeight * (currentTileset.width) + 1;
                             Drag = true;
                         }
                     }
@@ -242,21 +243,21 @@ namespace TestGame.src.level
                     {
                         if (Drag)
                         {
-                            endID = ((int)tilesetPos.X / level.CurrentMap.TileWidth) + ((int)tilesetPos.Y - TileSelectorField.Y) / level.CurrentMap.TileHeight * (currentTileset.width);
+                            endID = ((int)tilesetPos.X / level.CurrentMap.TileWidth) + ((int)tilesetPos.Y - TileSelectorField.Y) / level.CurrentMap.TileHeight * (currentTileset.width) + 1;
 
 
-                            Rectangle endid = new Rectangle(level.CurrentMap.getSourceRectangle(endID, currentTileset).X / level.CurrentMap.TileWidth, level.CurrentMap.getSourceRectangle(endID, currentTileset).Y / level.CurrentMap.TileHeight, level.CurrentMap.TileHeight, level.CurrentMap.TileHeight);
-                            Rectangle startid = new Rectangle(level.CurrentMap.getSourceRectangle(startID, currentTileset).X / level.CurrentMap.TileWidth, level.CurrentMap.getSourceRectangle(startID, currentTileset).Y / level.CurrentMap.TileHeight, level.CurrentMap.TileHeight, level.CurrentMap.TileHeight);
+                            Rectangle endid = new Rectangle(level.CurrentMap.getSourceRectangle(endID, currentTileset).X / level.CurrentMap.TileWidth + 1, level.CurrentMap.getSourceRectangle(endID, currentTileset).Y / level.CurrentMap.TileHeight, level.CurrentMap.TileHeight, level.CurrentMap.TileHeight);
+                            Rectangle startid = new Rectangle(level.CurrentMap.getSourceRectangle(startID, currentTileset).X / level.CurrentMap.TileWidth + 1, level.CurrentMap.getSourceRectangle(startID, currentTileset).Y / level.CurrentMap.TileHeight, level.CurrentMap.TileHeight, level.CurrentMap.TileHeight);
                             if (startID > endID || startid.X > endid.X || startid.Y > endid.Y) return;
                             currentItemIDs = new int[endid.X - startid.X + 1, endid.Y - startid.Y + 1];
                             for (int y = startid.Y; y <= endid.Y; y++)
                             {
                                 for (int x = startid.X; x <= endid.X; x++)
                                 {
-                                    currentItemIDs[x - startid.X, y - startid.Y] = Tiles[x + y * currentTileset.width];
+                                    currentItemIDs[x - startid.X, y - startid.Y] = Tiles[x + y * currentTileset.width]-1;
                                 }
                             };
-                            sourceRectangle = new Rectangle(startid.X * level.CurrentMap.TileWidth, startid.Y * level.CurrentMap.TileHeight, (endid.X - startid.X) * level.CurrentMap.TileWidth + level.CurrentMap.TileWidth, (endid.Y - startid.Y) * level.CurrentMap.TileHeight + level.CurrentMap.TileHeight);
+                            sourceRectangle = new Rectangle((startid.X-1) * level.CurrentMap.TileWidth, startid.Y * level.CurrentMap.TileHeight, (endid.X - startid.X) * level.CurrentMap.TileWidth + level.CurrentMap.TileWidth, (endid.Y - startid.Y) * level.CurrentMap.TileHeight + level.CurrentMap.TileHeight);
                             Drag = false;
                             currentEditorMode = EditorMode.Place;
                         }
@@ -512,7 +513,7 @@ namespace TestGame.src.level
 
                 foreach(var id in currentItemIDs)
                 {
-                    Rectangle sourceRectangle = level.CurrentMap.getSourceRectangle(id - currentTileset.startvalue - 1, currentTileset);
+                    Rectangle sourceRectangle = level.CurrentMap.getSourceRectangle(id - currentTileset.startvalue, currentTileset);
                     sb.Draw(SelectedTileTexture, new Rectangle(TileSelectorField.X + sourceRectangle.X, TileSelectorField.Y + sourceRectangle.Y, level.CurrentMap.TileWidth, level.CurrentMap.TileHeight), Color.White);
                 }                           
         }

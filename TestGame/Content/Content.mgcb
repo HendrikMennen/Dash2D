@@ -143,6 +143,30 @@
 /processorParam:Quality=Best
 /build:sound/effects/stereo/singleshot.wav
 
+#begin sound/effects/stereo/stepdirt_1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/effects/stereo/stepdirt_1.wav
+
+#begin sound/effects/stereo/stepstone_1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/effects/stereo/stepstone_1.wav
+
+#begin sound/effects/stereo/stepwood_1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/effects/stereo/stepwood_1.wav
+
+#begin sound/effects/stereo/stepwood_2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/effects/stereo/stepwood_2.wav
+
 #begin sound/effects/stereo/throw1.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

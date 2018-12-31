@@ -39,7 +39,7 @@ namespace TestGame.src.entities.objects.furniture
             width = source.Width;
             height = source.Height;
 
-            hitbox = new Rectangle(0, 27, 16, 5);
+            hitbox = new Rectangle(0, 22, 16, 10);
             clickbox = new Rectangle(0, 0, 16, 32);
             base.LoadContent(cm);
         }        
