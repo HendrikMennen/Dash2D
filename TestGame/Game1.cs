@@ -53,7 +53,7 @@ namespace TestGame
         public static int SpriteHeight, SpriteWidth;
         public static Rectangle UI_Margin = new Rectangle();
         public static bool online = false;
-        public static int screenWidth = 900, screenHeight = 500;
+        public static int screenWidth = 900, screenHeight = 490;
         public static float SOUNDEFFECTVOLUME = 0.1f;
 
 
@@ -372,6 +372,7 @@ namespace TestGame
                 mob.DrawChatBubble(spriteBatch);
             }
 
+#if true
             spriteBatch.DrawString(font, "X: " + level.getClientPlayer().Position.X.ToString(), new Vector2(xStart, 10), Color.Black);
             spriteBatch.DrawString(font, "Y: " + level.getClientPlayer().Position.Y.ToString(), new Vector2(xStart + 120, 10), Color.Black);
             spriteBatch.DrawString(font, "Map: " + level.currentMapName, new Vector2(xStart, 40), Color.Black);
@@ -384,6 +385,7 @@ namespace TestGame
                 spriteBatch.DrawString(font, "Sending: " + Math.Round((float)NetCode.SendingBytesPerSecond/100f)/10 + "kb/s", new Vector2(xStart, 190), Color.Black);
             }
 
+#endif
             chat.render(spriteBatch);
             menu.render(spriteBatch);
 

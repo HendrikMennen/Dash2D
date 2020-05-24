@@ -29,8 +29,9 @@ namespace TestGame.src.level
                 Indent = true
             };
             if (!filename.EndsWith(".xml")) filename += ".xml";
-            filename = "/TestGame/Content/maps/" + filename; 
-            filename = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + filename;
+            //filename = "/TestGame/Content/maps/" + filename; 
+            filename = "Content/maps/" + filename; 
+            //filename = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + filename;
             using (XmlWriter writer = XmlWriter.Create(filename, settings))
             {
                 IntermediateSerializer.Serialize<T>(writer, data, null);
@@ -54,8 +55,9 @@ namespace TestGame.src.level
         {
             T data;
             if (!filename.EndsWith(".xml")) filename += ".xml";
-            filename = "/TestGame/Content/maps/" + filename;
-            filename = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + filename;          
+            //filename = "/TestGame/Content/maps/" + filename;
+            filename = "Content/maps/" + filename;
+            //filename = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + filename;          
             Debug.WriteLine(filename);
             using (FileStream stream = new FileStream(filename, FileMode.Open))
             {
